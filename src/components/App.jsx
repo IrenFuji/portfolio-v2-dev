@@ -23,7 +23,7 @@ const App = () => {
       <main id="main" className="flex-1">
         <Suspense
           fallback={
-            <div className="h-[70vh] grid place-items-center text-slate-500">
+            <div className="h-ms-center text-slate-500">[70vh] grid place-ite
               Loading…
             </div>
           }

@@ -4,12 +4,12 @@
 
 .app-bg {
   background-color: #ffffff;
+  overflow-x: hidden; /* prevent canvas glow from creating horizontal scroll */
 }
 
 .dark .app-bg {
-  background-color: #0a1930;
+  background-color: #0A1930; /* navy */
 }
 
-.app-bg::before {
-  content: none !important;
-}
+/* make sure no global pseudo backgrounds leak */
+.app-bg::before { content: none !important; }

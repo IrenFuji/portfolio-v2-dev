@@ -13,10 +13,16 @@ export default {
         mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       colors: {
-        brand: { DEFAULT: "#6d5fff", glow: "#00e0ff" },
+        // brand + background from the mock
+        brand: { DEFAULT: "#64FFDA", glow: "#64FFDA" },
+        navy: "#0A1930",
       },
       dropShadow: {
-        neon: ["0 0 8px rgba(109,95,255,.8)", "0 0 24px rgba(0,224,255,.45)"],
+        // subtle neon using the brand mint
+        neon: [
+          "0 0 8px rgba(100,255,218,.8)",
+          "0 0 24px rgba(100,255,218,.45)",
+        ],
       },
     },
   },

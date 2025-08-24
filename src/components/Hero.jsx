@@ -1,30 +1,32 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import * as THREE from "three";
+import "../styles/hero.css";
 
 const Hero = () => {
   const mountRef = useRef(null);
-  const titleRef = useRef(null);
-  const subtitleRef = useRef(null);
+  const h1TopRef = useRef(null);
+  const h1BottomRef = useRef(null);
+  const bodyRef = useRef(null);
 
   useEffect(() => {
-    // ---- THREE.JS (right column canvas) ----
     const mount = mountRef.current;
     if (!mount) return;
 
     const scene = new THREE.Scene();
+
     const camera = new THREE.PerspectiveCamera(
-      55,
+      52,
       mount.clientWidth / mount.clientHeight,
       0.1,
       100
     );
-    camera.position.set(0, 0, 6);
+    camera.position.set(0.2, 0.2, 6.2);
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
-      powerPreference: "high-performance",
       alpha: true,
+      powerPreference: "high-performance",
     });
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.setClearColor(0x000000, 0);
@@ -32,143 +34,152 @@ const Hero = () => {
     renderer.setSize(mount.clientWidth, mount.clientHeight, false);
     mount.appendChild(renderer.domElement);
 
-    // Lighting
-    scene.add(new THREE.AmbientLight(0xffffff, 0.35));
-    const key = new THREE.PointLight(0x6d5fff, 2, 30);
-    key.position.set(5, 4, 6);
-    const fill = new THREE.PointLight(0x00e0ff, 1.4, 30);
-    fill.position.set(-6, -2, 4);
-    scene.add(key, fill);
+    // lights
+    const amb = new THREE.AmbientLight(0xffffff, 0.28);
+    const key = new THREE.PointLight(0x64ffda, 1.45, 40);
+    key.position.set(6, 6, 8);
+    const rim = new THREE.PointLight(0x0fd0ff, 1.1, 40);
+    rim.position.set(-6, -2.5, 5);
+    scene.add(amb, key, rim);
 
-    // Mesh
-    const geo = new THREE.TorusKnotGeometry(1.2, 0.35, 180, 24);
-    const mat = new THREE.MeshStandardMaterial({
-      color: 0x2630a5,
-      metalness: 0.45,
-      roughness: 0.25,
-      emissive: 0x2930ff,
-      emissiveIntensity: 0.22,
+    // glossy torus knot
+    const material = new THREE.MeshPhysicalMaterial({
+      color: new THREE.Color("#0a3c4a"),
+      metalness: 0.4,
+      roughness: 0.18,
+      clearcoat: 1,
+      clearcoatRoughness: 0.08,
+      sheen: 1,
+      sheenColor: new THREE.Color("#64FFDA"),
+      envMapIntensity: 1.2,
+      emissive: new THREE.Color("#0ad8ff"),
+      emissiveIntensity: 0.16,
     });
-    const mesh = new THREE.Mesh(geo, mat);
-    scene.add(mesh);
+    const geometry = new THREE.TorusKnotGeometry(1.6, 0.44, 240, 36);
+    const knot = new THREE.Mesh(geometry, material);
+    knot.rotation.set(0.5, -0.2, 0);
+    scene.add(knot);
 
-    // Particles
-    const count = 450;
-    const positions = new Float32Array(count * 3);
-    for (let i = 0; i < count * 3; i++) positions[i] = (Math.random() - 0.5) * 18;
-    const particles = new THREE.Points(
+    // faint stars
+    const starN = 500;
+    const starPos = new Float32Array(starN * 3);
+    for (let i = 0; i < starN * 3; i++) starPos[i] = (Math.random() - 0.5) * 22;
+    const stars = new THREE.Points(
       new THREE.BufferGeometry().setAttribute(
         "position",
-        new THREE.BufferAttribute(positions, 3)
+        new THREE.BufferAttribute(starPos, 3)
       ),
-      new THREE.PointsMaterial({
-        size: 0.015,
-        color: 0x8aa1ff,
-        transparent: true,
-        opacity: 0.6,
-      })
+      new THREE.PointsMaterial({ size: 0.015, color: 0x9bdff3, transparent: true, opacity: 0.5 })
     );
-    scene.add(particles);
+    scene.add(stars);
 
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // responsiveness: keep object inside its column on all widths
+    const fit = () => {
+      const w = mount.clientWidth;
+      const h = mount.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h, false);
+
+      // move camera a bit further back on very wide screens and closer on phones
+      // t: 0 (mobile) -> 1 (xl)
+      const t = Math.min(1, Math.max(0, (w - 360) / 900));
+      camera.position.z = 6.8 - 1.6 * t; // 6.8 on phones, ~5.2 on xl
+
+      // scale knot accordingly so it doesn't crash into text
+      const s = 0.95 + 0.25 * t;
+      knot.scale.setScalar(s);
+    };
+    fit();
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let raf;
-    const render = () => {
-      mesh.rotation.x += prefersReduced ? 0.001 : 0.0035;
-      mesh.rotation.y += prefersReduced ? 0.0012 : 0.0045;
-      particles.rotation.y -= 0.0008;
+    const tick = () => {
+      knot.rotation.x += reduced ? 0.001 : 0.0032;
+      knot.rotation.y += reduced ? 0.0012 : 0.004;
+      stars.rotation.y -= 0.0008;
       renderer.render(scene, camera);
-      raf = requestAnimationFrame(render);
+      raf = requestAnimationFrame(tick);
     };
-    render();
+    tick();
 
-    // Parallax scoped to canvas
+    // gentle parallax scoped to canvas (smaller on mobile)
     const onPointerMove = (e) => {
-      if (prefersReduced) return;
+      if (reduced) return;
       const rect = mount.getBoundingClientRect();
       const nx = (e.clientX - rect.left) / rect.width - 0.5;
       const ny = (e.clientY - rect.top) / rect.height - 0.5;
-      gsap.to(camera.position, {
-        x: nx * 0.6,
-        y: ny * 0.6,
-        duration: 0.6,
-        ease: "power2.out",
-      });
+      const amp = rect.width < 640 ? 0.35 : 0.7; // mobile vs desktop amplitude
+      gsap.to(camera.position, { x: nx * amp, y: ny * amp * 0.85, duration: 0.6, ease: "power2.out" });
     };
     mount.addEventListener("pointermove", onPointerMove);
 
-    // Resize
-    const onResize = () => {
-      camera.aspect = mount.clientWidth / mount.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(mount.clientWidth, mount.clientHeight, false);
-    };
-    const ro = new ResizeObserver(onResize);
+    const ro = new ResizeObserver(fit);
     ro.observe(mount);
 
-    // Cleanup
     return () => {
       cancelAnimationFrame(raf);
       mount.removeEventListener("pointermove", onPointerMove);
       ro.disconnect();
       mount.removeChild(renderer.domElement);
-      geo.dispose();
-      mat.dispose();
+      geometry.dispose();
+      material.dispose();
       renderer.dispose();
     };
   }, []);
 
+  // copy entrance
   useEffect(() => {
-    // ---- GSAP ENTRANCE ----
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-    tl.from(titleRef.current, { y: 20, opacity: 0, duration: 0.8 })
-      .from(subtitleRef.current, { y: 12, opacity: 0, duration: 0.7 }, "-=0.3");
+    tl.from(h1TopRef.current, { y: 24, opacity: 0, duration: 0.7 })
+      .from(h1BottomRef.current, { y: 22, opacity: 0, duration: 0.7 }, "-=0.35")
+      .from(bodyRef.current, { y: 16, opacity: 0, duration: 0.6 }, "-=0.25");
   }, []);
 
   return (
     <section
       id="hero"
-      className="relative isolate scroll-mt-24 md:scroll-mt-28"
+      className="
+        hero-wrap relative isolate
+        pt-28 md:pt-32                /* leaves room under sticky nav */
+        scroll-mt-24 md:scroll-mt-28
+      "
       aria-label="Introduction"
     >
-      <div className="mx-auto max-w-7xl px-6 py-20 md:py-28 min-h-[70vh] grid md:grid-cols-12 items-center gap-10">
-        {/* LEFT: copy */}
-        <div className="md:col-span-7 text-left">
-          <h1
-            ref={titleRef}
-            className="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-[1.08]
-                       text-slate-900 dark:text-white tracking-tight"
-          >
-            Hello, I’m{" "}
-            <span className="bg-gradient-to-r from-brand via-indigo-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-neon">
-              Iren
+      <div className="mx-auto max-w-7xl px-6 md:px-8 pb-10 md:pb-20 grid md:grid-cols-12 gap-10 items-center">
+        {/* LEFT – text */}
+        <div className="hero-copy md:col-span-7 order-1">
+          <h1 className="leading-[1.05] tracking-tight">
+            <span
+              ref={h1TopRef}
+              className="block text-white text-[44px] sm:text-6xl md:text-7xl font-extrabold"
+            >
+              I’m Iren,
+            </span>
+            <span
+              ref={h1BottomRef}
+              className="block text-brand text-[44px] sm:text-6xl md:text-7xl font-extrabold"
+            >
+              Full-Stack Developer.
             </span>
           </h1>
 
           <p
-            ref={subtitleRef}
-            className="mt-5 max-w-xl text-base sm:text-lg md:text-xl
-                       text-slate-600 dark:text-slate-300"
+            ref={bodyRef}
+            className="mt-8 max-w-2xl text-lg md:text-2xl leading-relaxed text-slate-300"
           >
-            Full-stack developer blending{" "}
-            <span className="font-semibold">creative flair</span> with{" "}
-            <span className="font-semibold">solid engineering</span>—building
-            fast, accessible, modern experiences.
+            Based in Montreal, Canada, passionate about building{" "}
+            <span className="brand-underline">scalable, high-impact products</span>. I’ve contributed
+            to <span className="brand-underline">major enterprise feature launches</span>, powering
+            millions of transactions and operations worldwide.
           </p>
         </div>
 
-        {/* RIGHT: 3D canvas */}
-        <div className="md:col-span-5 relative">
-          {/* soft glow behind canvas */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -inset-10 rounded-[2rem]
-                       bg-gradient-to-br from-brand/25 via-cyan-300/10 to-transparent blur-2xl"
-          />
-          <div
-            ref={mountRef}
-            className="relative h-[38vh] sm:h-[44vh] md:h-[60vh] w-full"
-          />
+        {/* RIGHT – canvas (goes below text on mobile) */}
+        <div className="relative md:col-span-5 order-2 md:order-none overflow-hidden">
+          <div aria-hidden className="hero-glow" />
+          <div ref={mountRef} className="hero-canvas" />
         </div>
       </div>
     </section>

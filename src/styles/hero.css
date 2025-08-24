@@ -1,0 +1,39 @@
+:root{
+  --navy:#0A1930;
+  --accent:#64FFDA;
+}
+
+/* section wrapper color (inherits page bg) */
+.hero-wrap{ background: var(--navy); }
+
+/* mint underline chunks in paragraph */
+.brand-underline{
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
+/* soft glow stays behind canvas only */
+.hero-glow{
+  position:absolute; inset:-36px;
+  border-radius:36px;
+  pointer-events:none;
+  background:
+    radial-gradient(55% 55% at 70% 40%, rgba(100,255,218,.22) 0%, rgba(100,255,218,0) 60%),
+    radial-gradient(42% 42% at 20% 80%, rgba(15,208,255,.18) 0%, rgba(15,208,255,0) 70%);
+  filter: blur(26px);
+  z-index: 0;
+}
+
+/* responsive canvas envelope so it never overlaps text */
+.hero-canvas{
+  position: relative;
+  width: 100%;
+  height: clamp(280px, 52vh, 620px); /* mobile→desktop */
+  z-index: 1; /* below text column z-10 */
+  overflow: hidden;
+}
+
+/* ensure text is always above canvas/glow on any stacking context */
+.hero-copy{ position: relative; z-index: 10; }
