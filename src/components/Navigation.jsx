@@ -3,16 +3,6 @@ import ThemeToggle from "./ThemeToggle";
 import { gsap } from "gsap";
 import "../styles/navigation.css";
 
-/**
- * Navigation
- * - Logo "<i++/>" at far left
- * - Links: Home, Skills, Projects
- * - Glowing nav dot (GSAP) follows active link
- * - Contact pill navigates to #contact
- * - Theme toggle at far right
- * - Scroll-aware active state (IntersectionObserver)
- * - Responsive: collapses into mobile sheet
- */
 const Navigation = () => {
   const links = useMemo(
     () => [
@@ -26,9 +16,9 @@ const Navigation = () => {
   const [active, setActive] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const barRef = useRef(null);                 // wrapper around the links
-  const dotRef = useRef(null);                 // the glowing dot element
-  const linkRefs = useRef({});                 // map id -> DOM node
+  const barRef = useRef(null); // wrapper around the links
+  const dotRef = useRef(null); // the glowing dot element
+  const linkRefs = useRef({}); // map id -> DOM node
 
   // Position the dot under the provided link id
   const moveDotTo = (id, immediate = false) => {
@@ -39,7 +29,6 @@ const Navigation = () => {
 
     const barRect = bar.getBoundingClientRect();
     const tRect = target.getBoundingClientRect();
-    // center of the link text relative to the bar
     const x = tRect.left - barRect.left + tRect.width / 2 - dot.offsetWidth / 2;
 
     const config = immediate
@@ -49,7 +38,7 @@ const Navigation = () => {
     gsap.to(dot, config);
   };
 
-  // Scroll -> detect which section is in view
+  // Scroll 
   useEffect(() => {
     const sectionIds = links.map((l) => l.id).concat("contact");
     const observers = [];
@@ -67,7 +56,7 @@ const Navigation = () => {
           });
         },
         {
-          rootMargin: "-40% 0px -55% 0px", // favor section that's centered
+          rootMargin: "-40% 0px -55% 0px", 
           threshold: 0.01,
         }
       );
@@ -82,13 +71,12 @@ const Navigation = () => {
     moveDotTo(active);
   }, [active]);
 
-  // Initial layout + on resize (place the dot under initial link immediately)
+  // Initial layout + on resize 
   useEffect(() => {
     const place = () => moveDotTo(active, true);
     place();
     window.addEventListener("resize", place);
     return () => window.removeEventListener("resize", place);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Smooth scroll helper
@@ -147,10 +135,14 @@ const Navigation = () => {
 
               {/* Contact button */}
               <li>
-  <a href="#contact" onClick={onContactClick} className="btn-contact">
-    Contact
-  </a>
-</li>
+                <a
+                  href="#contact"
+                  onClick={onContactClick}
+                  className="btn-contact"
+                >
+                  Contact
+                </a>
+              </li>
 
               {/* Glowing dot */}
               <span ref={dotRef} className="nav-dot" aria-hidden="true" />
@@ -174,7 +166,10 @@ const Navigation = () => {
                 className="fill-slate-800 dark:fill-white"
               >
                 {menuOpen ? (
-                  <path d="M5 6h14v2H5V6zm0 10h14v2H5v-2z" transform="rotate(45 12 12)" />
+                  <path
+                    d="M5 6h14v2H5V6zm0 10h14v2H5v-2z"
+                    transform="rotate(45 12 12)"
+                  />
                 ) : (
                   <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z" />
                 )}
@@ -200,7 +195,11 @@ const Navigation = () => {
                 </li>
               ))}
               <li className="py-2">
-                <a href="#contact" onClick={onContactClick} className="btn-contact">
+                <a
+                  href="#contact"
+                  onClick={onContactClick}
+                  className="btn-contact"
+                >
                   <span>Contact</span>
                 </a>
               </li>

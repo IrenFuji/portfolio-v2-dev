@@ -1,8 +1,8 @@
 :root {
-  --brand: #4ef4d6; /* mint/teal like in the mock */
+  --brand: #4ef4d6;
 }
 
-/* ------- Contact button: outlined pill ------- */
+/* ------- Contact button ------- */
 .btn-contact {
   display: inline-flex;
   align-items: center;
@@ -10,31 +10,30 @@
   padding: 0.5rem 1.25rem;
   font-weight: 600;
   border-radius: 9999px;
-  border: 1.5px solid #30e7d6; /* teal outline */
-  color: #fff; /* white text in dark mode */
+  border: 1.5px solid #30e7d6;
+  color: #fff;
   transition: all 0.2s ease;
 }
 
 /* light mode */
 html:not(.dark) .btn-contact {
-  color: #0a1930; /* navy text in light mode */
+  color: #0a1930;
 }
 
-
 .btn-contact:hover {
-  background-color: rgba(48, 231, 214, 0.1); /* faint hover */
+  background-color: rgba(48, 231, 214, 0.1);
 }
 
 /* ------- Navigation glowing dot ------- */
 .nav-dot {
   position: absolute;
-  bottom: -14px;              /* sits just under the links row */
+  bottom: -14px;
   width: 14px;
   height: 14px;
   border-radius: 9999px;
   background: var(--brand);
   box-shadow: 0 0 0 3px rgba(78, 244, 214, 0.15),
-              0 0 18px rgba(78, 244, 214, 0.75);
+    0 0 18px rgba(78, 244, 214, 0.75);
   transform: translateX(0);
   pointer-events: none;
 }
@@ -58,10 +57,10 @@ html:not(.dark) .btn-contact {
   left: 0;
   right: 0;
   top: 100%;
-  backdrop-filter: blur(8px);
-  background: color-mix(in oklab, #0a1930 90%, #000 10%);
+  backdrop-filter: blur(10px);
+  background: rgba(10, 25, 48, 0.92);
 }
-:root .mobile-sheet {
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: saturate(120%) blur(10px);
+/* light mode only */
+html:not(.dark) .mobile-sheet {
+  background: rgba(255, 255, 255, 0.92);
 }

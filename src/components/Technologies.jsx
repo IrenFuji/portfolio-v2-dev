@@ -1,62 +1,119 @@
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import React, { useMemo, useState } from "react";
+import "../styles/technologies.css";
 
-const stack = [
-  "HTML5",
-  "CSS3",
-  "JavaScript (ES202x)",
-  "React",
-  "Node.js",
-  "Express",
-  "MongoDB",
-  "REST APIs",
-  "JWT/Auth",
-  "Vite/CRA",
-  "Git/GitHub",
-  "Testing",
+const CATEGORIES = {
+  All: [],
+  Frontend: [
+    "JavaScript",
+    "HTML5",
+    "CSS3",
+    "React",
+    "Vite",
+    "Three.js",
+    "Tailwind",
+    "Bootstrap",
+  ],
+  Backend: ["Node.js", "Express.js", "Python"],
+  Databases: ["MongoDB", "Firebase"],
+  Hosting: ["Netlify", "Vercel"],
+  Tools: ["GitHub", "Bitbucket", "Postman", "Insomnia", "Docker", "Stripe"],
+  DesignPM: ["Figma", "Miro", "Jira"],
+  IDEs: ["VS Code", "IntelliJ", "PyCharm"],
+  APIs: ["Stripe", "OpenAI API"],
+};
+
+const TECHNOLOGIES = [
+  { label: "JavaScript", iconClass: "devicon-javascript-plain colored" },
+  { label: "HTML5", iconClass: "devicon-html5-plain colored" },
+  { label: "CSS3", iconClass: "devicon-css3-plain colored" },
+
+  { label: "React", iconClass: "devicon-react-original colored" },
+  { label: "Vite", iconClass: "devicon-vitejs-plain colored" },
+  {
+    label: "Three.js",
+    iconClass: "devicon-threejs-original",
+    monochrome: true,
+  },
+
+  { label: "Node.js", iconClass: "devicon-nodejs-plain colored" },
+  {
+    label: "Express.js",
+    iconClass: "devicon-express-original",
+    monochrome: true,
+  },
+  { label: "Python", iconClass: "devicon-python-plain colored" },
+
+  { label: "MongoDB", iconClass: "devicon-mongodb-plain colored" },
+  { label: "Firebase", iconClass: "devicon-firebase-plain colored" },
+  { label: "Netlify", iconClass: "devicon-netlify-plain colored" },
+  { label: "Vercel", iconClass: "devicon-vercel-original", monochrome: true },
+
+  { label: "GitHub", iconClass: "devicon-github-original", monochrome: true },
+  { label: "Bitbucket", iconClass: "devicon-bitbucket-original colored" },
+  { label: "Postman", iconClass: "devicon-postman-plain colored" },
+  { label: "Insomnia", iconClass: "devicon-insomnia-plain colored" },
+  { label: "Docker", iconClass: "devicon-docker-plain colored" },
+
+  { label: "Figma", iconClass: "devicon-figma-plain colored" },
+  { label: "Miro" },
+  { label: "Jira", iconClass: "devicon-jira-plain colored" },
+
+  { label: "Tailwind", iconClass: "devicon-tailwindcss-original colored" },
+  { label: "Bootstrap", iconClass: "devicon-bootstrap-plain colored" },
+
+  { label: "VS Code", iconClass: "devicon-vscode-plain colored" },
+  { label: "IntelliJ", iconClass: "devicon-intellij-plain colored" },
+  { label: "PyCharm", iconClass: "devicon-pycharm-plain colored" },
+
+  { label: "OpenAI API" },
+  { label: "Stripe" },
 ];
 
 const Technologies = () => {
-  const listRef = useRef(null);
+  const [activeCat, setActiveCat] = useState("All");
 
-  useEffect(() => {
-    const items = listRef.current?.querySelectorAll("[data-tech]");
-    if (items && items.length) {
-      gsap.from(items, {
-        y: 12,
-        opacity: 0,
-        stagger: 0.03,
-        duration: 0.45,
-        ease: "power2.out",
-      });
-    }
-  }, []);
+  const filtered = useMemo(() => {
+    if (activeCat === "All") return TECHNOLOGIES;
+    const allow = new Set(CATEGORIES[activeCat]);
+    return TECHNOLOGIES.filter((t) => allow.has(t.label));
+  }, [activeCat]);
 
   return (
-    <section id="technologies" className="py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center">
-          Technologies
-        </h2>
+    <section className="tech-section app-bg">
+      <div className="mx-auto max-w-screen-xl">
+        <h2 className="tech-title text-4xl sm:text-5xl mb-10">Tech Stack</h2>
 
-        <p className="mt-3 text-center text-slate-600 dark:text-slate-300">
-          Tools I use to ship reliable products—front to back.
-        </p>
-
-        <div
-          ref={listRef}
-          className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"
-        >
-          {stack.map((t) => (
-            <span
-              key={t}
-              data-tech
-              className="rounded-xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-white/5 px-4 py-3
-                         text-sm font-medium text-slate-800 dark:text-slate-200 shadow-sm hover:shadow transition
-                         hover:bg-white dark:hover:bg-white/10 neon-ring/0"
+        {/* Gradient-outline chips (no search) */}
+        <div className="tech-controls" role="group" aria-label="Tech filters">
+          {Object.keys(CATEGORIES).map((cat) => (
+            <button
+              key={cat}
+              type="button"
+              className="tech-chip"
+              aria-pressed={activeCat === cat}
+              onClick={() => setActiveCat(cat)}
             >
-              {t}
-            </span>
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Icons Grid */}
+        <div className="tech-grid" role="list" aria-label="Technologies">
+          {filtered.map(({ label, iconClass, monochrome }) => (
+            <div key={label} className="tech-item" role="listitem">
+              {iconClass ? (
+                <span
+                  aria-hidden="true"
+                  className={`tech-icon ${iconClass} ${
+                    iconClass.includes("colored") ? "colored" : ""
+                  } ${monochrome ? "monochrome" : ""}`}
+                  title={label}
+                />
+              ) : null}
+              <span className="tech-label">{label}</span>
+              <button className="sr-only" aria-label={label} />
+            </div>
           ))}
         </div>
       </div>

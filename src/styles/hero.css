@@ -1,39 +1,73 @@
-:root{
-  --navy:#0A1930;
-  --accent:#64FFDA;
+:root {
+  --hero-accent: #4ef3c1; /* mint */
+  --hero-title: #0a1930; /* deep navy (light) */
+  --hero-text: #475569; /* slate-600 (light body) */
+  --hero-muted: #708198; /* muted blue-gray */
 }
 
-/* section wrapper color (inherits page bg) */
-.hero-wrap{ background: var(--navy); }
-
-/* mint underline chunks in paragraph */
-.brand-underline{
-  color: var(--accent);
-  text-decoration: underline;
-  text-decoration-thickness: 3px;
-  text-underline-offset: 6px;
+.dark {
+  --hero-title: #ffffff; /* titles on dark */
+  --hero-text: #e8eef5; /* body on dark */
+  --hero-muted: #a6b0bd; /* muted on dark */
 }
 
-/* soft glow stays behind canvas only */
-.hero-glow{
-  position:absolute; inset:-36px;
-  border-radius:36px;
-  pointer-events:none;
-  background:
-    radial-gradient(55% 55% at 70% 40%, rgba(100,255,218,.22) 0%, rgba(100,255,218,0) 60%),
-    radial-gradient(42% 42% at 20% 80%, rgba(15,208,255,.18) 0%, rgba(15,208,255,0) 70%);
-  filter: blur(26px);
-  z-index: 0;
+.hero-accent {
+  color: var(--hero-accent);
+  text-shadow: 0 0 18px rgba(78, 243, 193, 0.25);
 }
 
-/* responsive canvas envelope so it never overlaps text */
-.hero-canvas{
-  position: relative;
-  width: 100%;
-  height: clamp(280px, 52vh, 620px); /* mobile→desktop */
-  z-index: 1; /* below text column z-10 */
-  overflow: hidden;
+.hero-title {
+  color: var(--hero-title);
+  line-height: 1.05;
+  letter-spacing: 0.2px;
+}
+.hero-copy {
+  color: var(--hero-text);
+}
+.hero-muted {
+  color: var(--hero-muted);
 }
 
-/* ensure text is always above canvas/glow on any stacking context */
-.hero-copy{ position: relative; z-index: 10; }
+/* headline accent  */
+.hero-accent-title {
+  color: var(--hero-accent);
+  text-shadow: none;
+}
+
+/* layout */
+.hero-wrap {
+  max-width: 56rem;
+}
+
+/* entrance animation */
+@keyframes heroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.hero-animate > * {
+  animation: heroFadeUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.hero-animate > *:nth-child(2) {
+  animation-delay: 0.05s;
+}
+.hero-animate > *:nth-child(3) {
+  animation-delay: 0.1s;
+}
+.hero-animate > *:nth-child(4) {
+  animation-delay: 0.15s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-animate > * {
+    animation: none !important;
+  }
+  .hero-accent {
+    text-shadow: none;
+  }
+}
