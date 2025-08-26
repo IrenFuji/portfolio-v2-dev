@@ -79,7 +79,7 @@ const Technologies = () => {
   }, [activeCat]);
 
   return (
-    <section className="tech-section app-bg">
+    <section id="technologies" className="tech-section app-bg">
       <div className="mx-auto max-w-screen-xl">
         <h2 className="tech-title text-4xl sm:text-5xl mb-10">Tech Stack</h2>
 
