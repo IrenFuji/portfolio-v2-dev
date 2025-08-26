@@ -87,7 +87,7 @@ const projects = [
     previews: { desktop: portDesktop, mobile: portMobile },
     links: {
       github: "https://github.com/IrenFuji/portfolio-v2-dev",
-      demo: "https://ai-readme-generator-md.vercel.app/",
+      demo: "https://irendev.netlify.app/",
     },
   },
 ];
