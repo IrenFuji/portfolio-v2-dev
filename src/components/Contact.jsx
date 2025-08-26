@@ -4,6 +4,11 @@ import "../styles/contact.css";
 export default function Contact() {
   const [toast, setToast] = useState(null); 
   const [busy, setBusy] = useState(false);
+  const [errors, setErrors] = useState({
+    name: false,
+    email: false,
+    message: false,
+  });
 
   const isDark = useMemo(
     () =>
@@ -11,6 +16,9 @@ export default function Contact() {
       document.documentElement.classList.contains("dark"),
     []
   );
+
+  const clearFieldError = (field) =>
+    setErrors((e) => (e[field] ? { ...e, [field]: false } : e));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,8 +28,19 @@ export default function Contact() {
     const name = form.elements["name"]?.value?.trim() ?? "";
     const email = form.elements["email"]?.value?.trim() ?? "";
     const message = form.elements["message"]?.value?.trim() ?? "";
+    const honey = form.elements["_honey"]?.value ?? ""; // spam trap
 
-    if (!name || !email || !message) {
+    if (honey) return; // bot, just ignore
+
+    // required validation
+    const nextErrors = {
+      name: !name,
+      email: !email,
+      message: !message,
+    };
+    setErrors(nextErrors);
+
+    if (nextErrors.name || nextErrors.email || nextErrors.message) {
       setToast("err");
       setTimeout(() => setToast(null), 3000);
       return;
@@ -30,7 +49,6 @@ export default function Contact() {
     setBusy(true);
 
     try {
-      // FormSubmit
       const res = await fetch(
         "https://formsubmit.co/ajax/irenpavlenko22@gmail.com",
         {
@@ -77,54 +95,89 @@ export default function Contact() {
           {/* LEFT: FORM */}
           <div className="w-full max-w-2xl">
             <div className="relative">
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                {/* Honeypot as spam trap */}
+                <input
+                  type="text"
+                  name="_honey"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  style={{ display: "none" }}
+                />
+
                 {/* Full name */}
                 <div>
-                  <label className="block text-lg font-semibold contact-title mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-base sm:text-lg font-semibold contact-title mb-2"
+                  >
                     Full name
                   </label>
                   <input
-                    type="text"
+                    id="name"
                     name="name"
-                    className="contact-input"
+                    type="text"
+                    autoComplete="name"
+                    minLength={2}
+                    onChange={() => clearFieldError("name")}
+                    className={`contact-input ${
+                      errors.name ? "contact-field--error" : ""
+                    }`}
                     placeholder="your full name"
                     required
                   />
                 </div>
 
-                {/* email */}
+                {/* Email */}
                 <div>
-                  <label className="block text-lg font-semibold contact-title mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-base sm:text-lg font-semibold contact-title mb-2"
+                  >
                     E-mail
                   </label>
                   <input
-                    type="email"
+                    id="email"
                     name="email"
-                    className="contact-input"
-                    placeholder="you@example."
+                    type="email"
+                    inputMode="email"
+                    autoComplete="email"
+                    onChange={() => clearFieldError("email")}
+                    className={`contact-input ${
+                      errors.email ? "contact-field--error" : ""
+                    }`}
+                    placeholder="you@example.com"
                     required
                   />
                 </div>
 
-                {/* message */}
+                {/* Message */}
                 <div>
-                  <label className="block text-lg font-semibold contact-title mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-base sm:text-lg font-semibold contact-title mb-2"
+                  >
                     Message
                   </label>
                   <textarea
+                    id="message"
                     name="message"
-                    className="contact-textarea"
-                    placeholder="Hi, I’d like to collaborate..."
+                    minLength={10}
                     rows={5}
+                    onChange={() => clearFieldError("message")}
+                    className={`contact-textarea ${
+                      errors.message ? "contact-field--error" : ""
+                    }`}
+                    placeholder="Hi, I’d like to collaborate..."
                     required
                   />
                 </div>
 
-                {/* submit & inline toast anchor */}
+                {/* Submit & toast anchor */}
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="contact-outline-btn"
+                    className="contact-primary-btn"
                     disabled={busy}
                   >
                     {busy ? "Sending..." : "Submit"}
@@ -132,9 +185,13 @@ export default function Contact() {
                 </div>
               </form>
 
-              {/* toast pop up */}
+              {/* Toast (accessible) */}
               {toast && (
-                <div className={`contact-toast ${isDark ? "" : "light"}`}>
+                <div
+                  className={`contact-toast ${isDark ? "" : "light"}`}
+                  role="status"
+                  aria-live="polite"
+                >
                   <p className="font-semibold">
                     {toast === "ok"
                       ? "Thank you for connecting! I’ll reply shortly."
@@ -145,6 +202,7 @@ export default function Contact() {
             </div>
           </div>
 
+          {/* RIGHT: Contact details */}
           <div className="w-full max-w-xl contact-right-align">
             <div className="flex flex-col gap-8">
               {/* Location */}
@@ -153,7 +211,6 @@ export default function Contact() {
                   className="mt-[2px] h-6 w-6 flex-shrink-0"
                   viewBox="0 0 24 24"
                   fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
                   aria-hidden="true"
                 >
                   <path
@@ -171,7 +228,9 @@ export default function Contact() {
                 </svg>
                 <div className="leading-6">
                   <p className="contact-title font-semibold">Based in Canada</p>
-                  <p className="contact-muted">Canadian Citizen • Open to relocation </p>
+                  <p className="contact-muted">
+                    Canadian Citizen • Open to relocation
+                  </p>
                 </div>
               </div>
 
@@ -181,7 +240,6 @@ export default function Contact() {
                   className="mt-[2px] h-6 w-6 flex-shrink-0"
                   viewBox="0 0 24 24"
                   fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
                   aria-hidden="true"
                 >
                   <path
@@ -206,7 +264,6 @@ export default function Contact() {
                   className="mt-[2px] h-6 w-6 flex-shrink-0"
                   viewBox="0 0 24 24"
                   fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
                   aria-hidden="true"
                 >
                   <path
@@ -225,7 +282,7 @@ export default function Contact() {
                 </a>
               </div>
 
-              {/* socials */}
+              {/* Socials */}
               <div className="flex items-center gap-5 contact-social">
                 <a
                   href="https://www.linkedin.com/in/irenepavlenko/"
@@ -237,7 +294,6 @@ export default function Contact() {
                 >
                   <i className="devicon-linkedin-plain" />
                 </a>
-
                 <a
                   href="https://github.com/IrenFuji"
                   target="_blank"
