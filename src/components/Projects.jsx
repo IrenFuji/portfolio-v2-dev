@@ -9,19 +9,19 @@ const LINKS = {
 
 const projects = [
   {
-    title: "E-commerce platform",
-    desc: "Improved new e-commerce platform for energy basde company.",
-    tech: ["JS", "Firebase", "AWS"],
+    title: "E-Commerce Platform for Fuji Energy Co., Ltd. (B2B & B2C)",
+    desc: "End-to-end development of a scalable e-commerce platform supporting both B2B and B2C customers. Defined user/client flows in Figma, created mock designs, collaborated directly with the client, implemented the frontend and backend, performed testing, and deployed on AWS. Delivered a production-ready system as a solo developer, managing the full lifecycle from concept to launch.",
+    tech: ["JS", "Firebase", "AWS", "React", "Bootstrap", "Stripe"],
   },
   {
-    title: "E-commerce platform",
-    desc: "Improved new e-commerce platform for energy basde company.",
-    tech: ["JS", "Firebase", "AWS"],
+    title: "AI-Powered README Generator for Tech Professionals",
+    desc: "A modern developer tool that generates clean, accurate README.md files from your source code in seconds, saving time, avoiding errors, and boosting developer productivity.",
+    tech: ["JS", "HTML5", "CSS3", "Open AI API", "Vercel" ],
   },
   {
-    title: "E-commerce platform",
-    desc: "Improved new e-commerce platform for energy basde company.",
-    tech: ["JS", "Firebase", "AWS"],
+    title: "Full-Stack Developer Personal Portfolio",
+    desc: "Designed and implemented a responsive personal portfolio showcasing full-stack projects. Optimized for performance, accessibility, and cross-device compatibility, and deployed with Netlify’s automated CI/CD pipeline for fast iteration.",
+    tech: ["JS", "CSS", "HTML", "Tailwind", "React", "GSAP", "Netlify"],
   },
 ];
 
