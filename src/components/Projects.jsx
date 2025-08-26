@@ -60,8 +60,8 @@ const projects = [
     title: "E-Commerce Platform for Fuji Energy Co., Ltd. (B2B & B2C)",
     tagline:
       "End-to-end e-commerce platform for Fuji Energy, delivered solo from design to AWS deployment.",
-    desc: "I built this project completely on my own — starting with Figma to map out user and client flows, creating mock designs, and working directly with the client to align on requirements. From there, I developed the frontend and backend, handled testing, and deployed everything on AWS. It’s a full production-ready e-commerce platform that supports both B2B and B2C transactions.",
-    tech: ["JS", "Firebase", "AWS", "React", "Bootstrap", "Stripe"],
+    desc: "I built this project completely on my own, starting with Figma to map out user and client flows, creating mock designs, and working directly with the client to align on requirements. From there, I developed the frontend and backend, handled testing, and deployed everything on AWS. It’s a full production-ready e-commerce platform that supports both B2B and B2C transactions.",
+    tech: ["JS", "CSS", "HTML", "Firebase", "AWS", "React", "Bootstrap", "Stripe", "Figma"],
     previews: { desktop: ecomDesktop, mobile: ecomMobile },
     links: { github: null, demo: "https://ai-readme-generator-md.vercel.app/" },
   },
@@ -70,8 +70,8 @@ const projects = [
     title: "AI-Powered README Generator for Tech Professionals",
     tagline:
       "AI-driven README generator to make developer documentation faster and more consistent.",
-    desc: "This tool helps developers quickly create professional, well-structured README files. I researched common pain points in project documentation, designed a simple interface, and integrated AI to generate content. I tested it with different project types and set it up so it works smoothly with GitHub. The goal was to save developers time and improve consistency in documentation.",
-    tech: ["JS", "HTML5", "CSS3", "Open AI API", "Vercel"],
+    desc: "This tool helps developers quickly create professional, well-structured README files. I researched common pain points in project documentation, designed a simple interface, and integrated AI to generate content. The goal was to save developers time and improve consistency in documentation.",
+    tech: ["JS", "HTML5", "CSS3", "Open AI API", "Tailwind", "Vercel"],
     previews: { desktop: aiDesktop, mobile: aiMobile },
     links: {
       github: "https://github.com/IrenFuji/ai-readme-generator",
