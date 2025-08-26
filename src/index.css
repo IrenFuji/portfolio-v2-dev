@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .app-bg {
-  background-color: #ffffff;
+  background-color: #FAF9F6;
   overflow-x: hidden; /* prevent canvas glow from creating horizontal scroll */
 }
 
