@@ -113,7 +113,7 @@ function ProjectCard({ item, index }) {
             className="btn-accent"
           >
             <IconExternal className="-ml-0.5" />
-            <span className="ml-1">Live</span>
+            <span className="ml-1">Demo</span>
           </a>
         </div>
       </div>
