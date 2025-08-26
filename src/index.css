@@ -8,8 +8,8 @@
 }
 
 .dark .app-bg {
-  background-color: #0A1930; /* navy */
+  background-color: #0A1930; 
 }
 
-/* make sure no global pseudo backgrounds leak */
+/* no global pseudo backgrounds leak */
 .app-bg::before { content: none !important; }
