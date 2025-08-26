@@ -170,8 +170,8 @@ export default function Contact() {
                   />
                 </svg>
                 <div className="leading-6">
-                  <p className="contact-title font-semibold">Canada</p>
-                  <p className="contact-muted">Open for relocation</p>
+                  <p className="contact-title font-semibold">Based in Canada</p>
+                  <p className="contact-muted">Canadian Citizen • Open to relocation </p>
                 </div>
               </div>
 
