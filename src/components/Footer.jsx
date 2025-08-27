@@ -16,7 +16,7 @@ const Footer = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const since = 2024;
+  const since = 2025;
   const presentLabel = new Date().getFullYear() > since ? "Present" : `${since}`;
 
   return (
