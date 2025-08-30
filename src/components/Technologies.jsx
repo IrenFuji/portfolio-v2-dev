@@ -80,10 +80,10 @@ const Technologies = () => {
 
   return (
     <section id="technologies" className="tech-section app-bg">
-      <div className="mx-auto max-w-screen-xl">
-        <h2 className="tech-title text-4xl sm:text-5xl mb-10">Tech Stack</h2>
+      <div className="tech-shell">
+        <h2 className="tech-title text-4xl sm:text-5xl">Tech Stack</h2>
 
-        {/* Gradient-outline chips (no search) */}
+        {/* Filter chips */}
         <div className="tech-controls" role="group" aria-label="Tech filters">
           {Object.keys(CATEGORIES).map((cat) => (
             <button

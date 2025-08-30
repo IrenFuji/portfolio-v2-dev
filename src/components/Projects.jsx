@@ -226,13 +226,13 @@ export default function Projects() {
   return (
     <section id="projects" className="py-10 sm:py-12">
       <div className="mx-auto max-w-6xl px-4">
-        <div className="flex items-center justify-between gap-6">
-          <h2 className="section-title">Projects</h2>
-
-          <div className="ml-auto flex items-center gap-3">
-            <DeviceToggle device={device} setDevice={setDevice} />
-          </div>
-        </div>
+       <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center gap-4">
+  <div className="hidden md:block" />
+  <h2 className="section-title text-center md:justify-self-center">Projects</h2>
+  <div className="justify-self-center md:justify-self-end">
+    <DeviceToggle device={device} setDevice={setDevice} />
+  </div>
+</div>
 
         <div className="mt-6 grid grid-cols-1 gap-10">
           {projects.map((p, i) => (

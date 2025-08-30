@@ -10,19 +10,29 @@
   --page-dark: #0a1930;
 }
 
+/* SECTION */
 .tech-section {
   padding: 4rem 1rem;
 }
 @media (min-width: 768px) {
   .tech-section {
-    padding: 6rem 2rem;
+    padding: 6rem 1rem;
   }
 }
 
+/* Align width & centering to feel like Projects */
+.tech-shell {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* ---------- Title ---------- */
 .tech-title {
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text-dark);
+  text-align: center; /* centered title */
+  margin-bottom: 2rem; /* consistent spacing above chips */
 }
 .dark .tech-title {
   color: var(--text-light);
@@ -31,15 +41,34 @@
 /* ---------- Filter chips  ---------- */
 .tech-controls {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-  margin-bottom: 1.25rem;
+  flex-wrap: wrap; /* wrap on larger screens */
+  justify-content: center; /* center chips under title */
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+  padding-bottom: 0.25rem;
+}
+
+/* Mobile: horizontal scroll, no wrap */
+@media (max-width: 640px) {
+  .tech-controls {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tech-controls::-webkit-scrollbar {
+    height: 6px;
+  }
+  .tech-controls::-webkit-scrollbar-thumb {
+    background: rgba(100, 255, 218, 0.35);
+    border-radius: 999px;
+  }
 }
 
 .tech-chip {
   position: relative;
   font-weight: 800;
-  padding: 0.6rem 1rem;
+  padding: 0.5rem 0.9rem;
   border-radius: 999px;
   cursor: pointer;
   background: linear-gradient(var(--page-light), var(--page-light)) padding-box,
@@ -54,6 +83,8 @@
   color: var(--text-dark);
   transition: transform 0.12s ease, filter 0.18s ease, background 0.18s ease,
     color 0.18s ease;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
 }
 .tech-chip:hover {
   transform: translateY(-1px);
@@ -63,12 +94,10 @@
   outline: none;
   box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.35);
 }
-
 .tech-chip[aria-pressed="true"] {
   background: linear-gradient(135deg, var(--accent), rgba(100, 255, 218, 0.85));
   color: #0a1930;
 }
-
 .dark .tech-chip {
   background: linear-gradient(var(--page-dark), var(--page-dark)) padding-box,
     linear-gradient(
@@ -80,7 +109,6 @@
       border-box;
   color: var(--text-light);
 }
-
 .tech-chip[aria-pressed="true"],
 .tech-chip[aria-pressed="true"]:hover,
 .tech-chip[aria-pressed="true"]:focus,
@@ -91,17 +119,43 @@
   box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.35);
 }
 
-.tech-chip {
-  -webkit-tap-highlight-color: transparent;
+/* Smaller chips on very narrow phones */
+@media (max-width: 400px) {
+  .tech-chip {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.85rem;
+  }
 }
 
 /* ---------- Grid / Cards ---------- */
 .tech-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
+  gap: 14px;
   margin-top: 0.5rem;
-  max-width: 1200px;
+  width: 100%;
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+}
+@media (min-width: 1024px) {
+  .tech-grid {
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+/* Grid tweak for small devices */
+@media (max-width: 640px) {
+  .tech-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+  }
+}
+/* extra small */
+@media (max-width: 380px) {
+  .tech-grid {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
 }
 
 /* card */
@@ -109,10 +163,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.6rem;
-  min-height: 78px;
-  padding: 16px;
-  border-radius: 18px;
+  gap: 0.55rem;
+  min-height: 64px;
+  padding: 12px 14px;
+  border-radius: 16px;
   text-align: center;
   background: var(--card-light);
   box-shadow: 0 4px 16px rgba(16, 24, 40, 0.08);
@@ -133,15 +187,14 @@
 
 /* ---------- Icon + Label ---------- */
 .tech-icon {
-  font-size: 28px;
-  width: 42px;
-  height: 42px;
+  font-size: 24px;
+  width: 36px;
+  height: 36px;
   display: grid;
   place-items: center;
   line-height: 1;
-  border-radius: 12px;
+  border-radius: 10px;
 }
-
 .tech-icon.monochrome {
   background: var(--tint-light);
   color: var(--text-dark);
@@ -156,19 +209,13 @@
   font-weight: 800;
   letter-spacing: 0.2px;
   color: var(--text-dark);
+  font-size: 0.95rem;
 }
 .dark .tech-label {
   color: var(--text-light);
 }
 
-
-@media (max-width: 380px) {
-  .tech-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  }
-}
-
-
+/* motion */
 @media (prefers-reduced-motion: reduce) {
   .tech-item,
   .tech-chip {
