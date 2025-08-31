@@ -3,13 +3,24 @@
 @tailwind utilities;
 
 .app-bg {
-  background-color: #FAF9F6;
+  background-color: #faf9f6;
   overflow-x: hidden; /* prevent canvas glow from creating horizontal scroll */
 }
 
 .dark .app-bg {
-  background-color: #0A1930; 
+  background-color: #0a1930;
 }
 
 /* no global pseudo backgrounds leak */
-.app-bg::before { content: none !important; }
+.app-bg::before {
+  content: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .opacity-0 {
+    opacity: 1 !important;
+  }
+  .translate-y-4 {
+    transform: none !important;
+  }
+}

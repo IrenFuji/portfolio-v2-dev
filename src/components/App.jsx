@@ -4,8 +4,8 @@ import Technologies from "./Technologies";
 import Projects from "./Projects";
 import Contact from "./Contact";
 import Footer from "./Footer";
+import FadeIn from "./FadeIn";
 
-// Lazy-load the heavy Hero (e.g., Three.js) for performance
 const Hero = lazy(() => import("./Hero"));
 
 function HeroFallback() {
@@ -23,7 +23,6 @@ function HeroFallback() {
 export default function App() {
   return (
     <div className="app-bg min-h-dvh flex flex-col">
-      {/* Skip link for a11y */}
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 bg-black text-white dark:bg-white dark:text-black px-3 py-2 rounded-md"
@@ -33,14 +32,29 @@ export default function App() {
 
       <Navigation />
 
-      <main id="main" className="flex-1">
+      <main id="main" className="flex-1 space-y-24">
         <Suspense fallback={<HeroFallback />}>
-          <Hero />
+          <FadeIn
+            as="section"
+            animate="fade-in"
+            className="relative min-h-[70vh] overflow-hidden"
+          >
+            <Hero />
+          </FadeIn>
         </Suspense>
 
-        <Technologies />
-        <Projects />
-        <Contact />
+        {/* Sections fade-in-up when scrolled into view */}
+        <FadeIn as="section">
+          <Technologies />
+        </FadeIn>
+
+        <FadeIn as="section">
+          <Projects />
+        </FadeIn>
+
+        <FadeIn as="section">
+          <Contact />
+        </FadeIn>
       </main>
 
       <Footer />
