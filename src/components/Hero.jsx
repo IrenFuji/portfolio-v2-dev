@@ -15,16 +15,16 @@ export default function Hero() {
       <div className="w-full max-w-[54rem] mx-auto">
         <div className="hero-animate text-center">
           {/* Headline */}
-          <h1 className="hero-title text-[clamp(28px,5vw,48px)] font-extrabold tracking-tight">
+          <h1 className="hero-title text-[clamp(28px,5vw,36px)]">
             I’m Iren,
           </h1>
 
-          <h2 className="hero-title hero-accent-title text-[clamp(28px,5vw,48px)] font-extrabold tracking-tight">
+          <h2 className="hero-title hero-accent-title text-[clamp(28px,5vw,36px)] font-extrabold">
             Full-Stack Developer.
           </h2>
 
           {/* Body */}
-          <p className="hero-copy mt-4 sm:mt-5 text-[clamp(16px,1.8vw,19px)] leading-[1.7]">
+          <p className="hero-copy mt-4 sm:mt-5 text-[clamp(16px,1.8vw,16px)] leading-[1.7]">
             <span className="hero-muted">
               Based in Montreal, Canada, passionate about building{" "}
             </span>
@@ -41,7 +41,7 @@ export default function Hero() {
           </p>
 
           {/* CTAs */}
-          <div className="mt-7 sm:mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="mt-7 sm:mt-9 flex flex-col sm:flex-row items-center justify-center gap-5">
             <a
               href="#projects"
               className="
@@ -49,7 +49,7 @@ export default function Hero() {
                 inline-flex items-center justify-center
                 w-full sm:w-auto rounded-2xl
                 px-5 py-3 sm:px-5 sm:py-3
-                text-sm sm:text-base font-semibold transition
+                text-sm sm:text-base transition
                 focus:outline-none focus-visible:ring-2
               "
             >
@@ -63,7 +63,7 @@ export default function Hero() {
                 inline-flex items-center justify-center
                 w-full sm:w-auto rounded-2xl
                 px-5 py-3 sm:px-5 sm:py-3
-                text-sm sm:text-base font-semibold transition
+                text-sm sm:text-base  transition
                 focus:outline-none focus-visible:ring-2
               "
             >

@@ -7,37 +7,37 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1.25rem;
-  font-weight: 600;
+  padding: 0.45rem 1.1rem;
   border-radius: 9999px;
-  border: 1.5px solid #30e7d6;
+  border: 1px solid #30e7d6;
   color: #fff;
   transition: all 0.2s ease;
+  line-height: 1;
 }
 
-/* light mode */
 html:not(.dark) .btn-contact {
   color: #0a1930;
 }
-
 .btn-contact:hover {
   background-color: rgba(48, 231, 214, 0.1);
 }
 
-/* ------- Navigation glowing dot ------- */
+/* ------- navigation glowing dot ------- */
 .nav-dot {
   position: absolute;
-  bottom: -14px;
-  width: 14px;
-  height: 14px;
+  bottom: 0;
+  width: 12px;
+  height: 12px;
   border-radius: 9999px;
   background: var(--brand);
   box-shadow: 0 0 0 3px rgba(78, 244, 214, 0.15),
     0 0 18px rgba(78, 244, 214, 0.75);
   transform: translateX(0);
   pointer-events: none;
+  z-index: 1;
 }
 
+/* link states */
 .nav-link {
   transition: opacity 150ms ease, color 150ms ease;
 }
@@ -60,7 +60,20 @@ html:not(.dark) .btn-contact {
   backdrop-filter: blur(10px);
   background: rgba(10, 25, 48, 0.92);
 }
-/* light mode only */
 html:not(.dark) .mobile-sheet {
   background: rgba(255, 255, 255, 0.92);
+}
+
+header,
+nav,
+.mobile-sheet,
+.nav-dot {
+  overflow: visible;
+}
+
+/* ------- compress spacing & sizes ------- */
+@media (max-width: 768px) {
+  .btn-contact {
+    padding: 0.4rem 1rem;
+  }
 }
