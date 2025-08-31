@@ -179,10 +179,10 @@
 
 /* --------- Handshake emoji animation --------- */
 .handshake-emoji {
-  display: inline-block; /* allows transform on the emoji */
+  display: inline-block;
   will-change: transform;
   animation: handshake-bob 0.9s ease-in-out infinite;
-  transform-origin: 60% 60%; /* looks a bit more “hand-like” */
+  transform-origin: 60% 60%;
 }
 
 @keyframes handshake-bob {
@@ -203,7 +203,6 @@
   }
 }
 
-/* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .handshake-emoji {
     animation: none;
