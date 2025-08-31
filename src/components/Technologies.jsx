@@ -81,7 +81,9 @@ const Technologies = () => {
   return (
     <section id="technologies" className="tech-section app-bg">
       <div className="tech-shell">
-        <h2 className="tech-title text-4xl sm:text-5xl">Tech Stack</h2>
+        <h2 className="tech-title text-center md:justify-self-center text-4xl sm:text-5xl">
+  Tech Stack
+</h2>
 
         {/* Filter chips */}
         <div className="tech-controls" role="group" aria-label="Tech filters">

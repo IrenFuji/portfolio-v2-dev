@@ -222,7 +222,9 @@ export default function Projects() {
       <div className="mx-auto max-w-6xl px-4">
        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center gap-4">
   <div className="hidden md:block" />
-  <h2 className="section-title text-center md:justify-self-center">Projects</h2>
+  <h2 className="section-title text-center md:justify-self-center text-4xl sm:text-5xl">
+  Projects
+</h2>
   <div className="justify-self-center md:justify-self-end">
     <DeviceToggle device={device} setDevice={setDevice} />
   </div>
