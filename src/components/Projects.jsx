@@ -171,13 +171,7 @@ function ProjectCard({ item, index, device }) {
 
   return (
    <article
-  className={`grid items-start gap-6 md:gap-8 ${
-    device === DEVICE.MOBILE
-      ? (flip
-          ? "grid-cols-[1fr_minmax(240px,360px)]"       
-          : "grid-cols-[minmax(240px,360px)_1fr]" )    
-      : "grid-cols-2"
-  } ${flip ? "md:[&>.media]:order-2" : ""}`}
+  className="grid grid-cols-1 md:grid-cols-2 items-start gap-6 md:gap-8"
 >
 
       {/* preview image */}
