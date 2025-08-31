@@ -1,9 +1,9 @@
 :root {
   /* color system */
-  --hero-accent: #4ef3c1;     
-  --hero-title:  #0a1930;     
-  --hero-text:   #475569;     
-  --hero-muted:  #708198;    
+  --hero-accent: #4ef3c1;
+  --hero-title:  #0a1930;
+  --hero-text:   #475569;
+  --hero-muted:  #708198;
 
   --ring:        rgba(78,243,193,.55);
 
@@ -12,8 +12,11 @@
   --surface-2:   rgba(255,255,255,.06);
 
   /* hover for ghost buttons */
-  --outline:     rgba(15,23,42,.22);     
+  --outline:     rgba(15,23,42,.22);
   --surface-hover: rgba(15,23,42,.04);
+
+  /* typography scales (smaller + responsive) */
+  --hero-h-line: 1.08;
 }
 
 .dark {
@@ -30,10 +33,9 @@
 
 .hero { position: relative; }
 
-
 .hero-title {
   color: var(--hero-title);
-  line-height: 1.06;
+  line-height: var(--hero-h-line);
   letter-spacing: 0.2px;
 }
 
@@ -42,7 +44,7 @@
 
 .hero-accent {
   color: var(--hero-accent);
-  text-shadow: 0 0 18px rgba(78, 243, 193, 0.25);
+  text-shadow: 0 0 16px rgba(78, 243, 193, 0.22);
 }
 
 .hero-accent-title {
@@ -54,7 +56,7 @@
 .hero-btn-primary {
   background: var(--hero-accent);
   color: #05121f;
-  box-shadow: 0 6px 24px rgba(78, 243, 193, 0.22);
+  box-shadow: 0 6px 22px rgba(78, 243, 193, 0.2);
 }
 .hero-btn-primary:hover { transform: translateY(-1px); }
 .hero-btn-primary:active { transform: translateY(0); }
@@ -62,8 +64,8 @@
 
 .hero-btn-secondary {
   background: var(--surface);
-  color: #0f172a;            
-  border: 1px solid rgba(148,163,184,.3); /* slate-400/30 */
+  color: #0f172a;
+  border: 1px solid rgba(148,163,184,.3);
 }
 .dark .hero-btn-secondary {
   background: var(--surface-2);
@@ -84,7 +86,7 @@
 .hero-btn-ghost:focus-visible { box-shadow: 0 0 0 3px var(--ring); }
 
 /* Layout width */
-.hero .hero-animate { max-width: 56rem; }
+.hero .hero-animate { max-width: 54rem; }
 
 /* Entrance animation */
 @keyframes heroFadeUp {

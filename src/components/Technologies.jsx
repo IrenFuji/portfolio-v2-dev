@@ -29,18 +29,10 @@ const TECHNOLOGIES = [
 
   { label: "React", iconClass: "devicon-react-original colored" },
   { label: "Vite", iconClass: "devicon-vitejs-plain colored" },
-  {
-    label: "Three.js",
-    iconClass: "devicon-threejs-original",
-    monochrome: true,
-  },
+  { label: "Three.js", iconClass: "devicon-threejs-original", monochrome: true },
 
   { label: "Node.js", iconClass: "devicon-nodejs-plain colored" },
-  {
-    label: "Express.js",
-    iconClass: "devicon-express-original",
-    monochrome: true,
-  },
+  { label: "Express.js", iconClass: "devicon-express-original", monochrome: true },
   { label: "Python", iconClass: "devicon-python-plain colored" },
 
   { label: "MongoDB", iconClass: "devicon-mongodb-plain colored" },
@@ -81,9 +73,9 @@ const Technologies = () => {
   return (
     <section id="technologies" className="tech-section app-bg">
       <div className="tech-shell">
-        <h2 className="tech-title text-center md:justify-self-center text-4xl sm:text-5xl">
-  Tech Stack
-</h2>
+        <h2 className="tech-title text-center text-3xl sm:text-4xl md:text-5xl">
+          Tech Stack
+        </h2>
 
         {/* Filter chips */}
         <div className="tech-controls" role="group" aria-label="Tech filters">

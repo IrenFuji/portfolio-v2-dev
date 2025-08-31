@@ -8,25 +8,23 @@ export default function Hero() {
       className="
         hero relative isolate overflow-hidden
         grid place-items-center
-        min-h-[88svh] md:min-h-[92svh]
+        min-h-[86svh] md:min-h-[92svh]
         px-6 sm:px-8
       "
     >
-
-
-      <div className="w-full max-w-[56rem] mx-auto">
+      <div className="w-full max-w-[54rem] mx-auto">
         <div className="hero-animate text-center">
           {/* Headline */}
-          <h1 className="hero-title text-[clamp(32px,6vw,56px)] font-extrabold tracking-tight">
+          <h1 className="hero-title text-[clamp(28px,5vw,48px)] font-extrabold tracking-tight">
             I’m Iren,
           </h1>
 
-          <h2 className="hero-title hero-accent-title text-[clamp(32px,6vw,56px)] font-extrabold tracking-tight">
+          <h2 className="hero-title hero-accent-title text-[clamp(28px,5vw,48px)] font-extrabold tracking-tight">
             Full-Stack Developer.
           </h2>
 
           {/* Body */}
-          <p className="hero-copy mt-5 sm:mt-6 text-[clamp(17px,2.1vw,20px)] leading-[1.7]">
+          <p className="hero-copy mt-4 sm:mt-5 text-[clamp(16px,1.8vw,19px)] leading-[1.7]">
             <span className="hero-muted">
               Based in Montreal, Canada, passionate about building{" "}
             </span>
@@ -43,14 +41,15 @@ export default function Hero() {
           </p>
 
           {/* CTAs */}
-          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="mt-7 sm:mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="#projects"
               className="
                 hero-btn-primary
                 inline-flex items-center justify-center
-                w-full sm:w-auto rounded-2xl px-5 py-3
-                text-base font-semibold transition
+                w-full sm:w-auto rounded-2xl
+                px-5 py-3 sm:px-5 sm:py-3
+                text-sm sm:text-base font-semibold transition
                 focus:outline-none focus-visible:ring-2
               "
             >
@@ -62,8 +61,9 @@ export default function Hero() {
               className="
                 hero-btn-ghost
                 inline-flex items-center justify-center
-                w-full sm:w-auto rounded-2xl px-5 py-3
-                text-base font-semibold transition
+                w-full sm:w-auto rounded-2xl
+                px-5 py-3 sm:px-5 sm:py-3
+                text-sm sm:text-base font-semibold transition
                 focus:outline-none focus-visible:ring-2
               "
             >
