@@ -166,7 +166,6 @@
   line-height: 1;
 }
 
-/* --------- Layout polish --------- */
 @media (min-width: 1024px) {
   .contact-right-align {
     padding-top: 2.85rem;
@@ -175,5 +174,38 @@
 @media (max-width: 640px) {
   .contact-right-align {
     margin-top: 0.75rem;
+  }
+}
+
+/* --------- Handshake emoji animation --------- */
+.handshake-emoji {
+  display: inline-block; /* allows transform on the emoji */
+  will-change: transform;
+  animation: handshake-bob 0.9s ease-in-out infinite;
+  transform-origin: 60% 60%; /* looks a bit more “hand-like” */
+}
+
+@keyframes handshake-bob {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-3px) rotate(6deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(3px) rotate(-6deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .handshake-emoji {
+    animation: none;
   }
 }

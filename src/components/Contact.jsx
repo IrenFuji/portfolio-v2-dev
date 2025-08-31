@@ -85,7 +85,7 @@ export default function Contact() {
       <div className="mx-auto w-full max-w-6xl px-6 sm:px-8">
         <h2 className="contact-title text-center text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight flex items-center justify-center gap-3">
           Let’s work together{" "}
-          <span role="img" aria-label="handshake">
+          <span role="img" aria-label="handshake" className="handshake-emoji">
             🤝
           </span>
         </h2>
