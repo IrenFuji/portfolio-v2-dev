@@ -72,17 +72,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Decorative corner glow */}
-      <div
-        aria-hidden="true"
-        className="
-          pointer-events-none absolute -z-10
-          right-[-12vw] top-[-12vh] h-[44vh] w-[44vw]
-          rounded-full blur-3xl
-          bg-[radial-gradient(closest-side,rgba(78,243,193,.18),transparent_70%)]
-          hidden md:block
-        "
-      />
     </section>
   );
 }
