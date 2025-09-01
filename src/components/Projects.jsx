@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../styles/projects.css";
 
-// ==== Preview assets ====
 import ecomDesktop from "../assets/e-commerce-desktop.png";
 import ecomMobile from "../assets/e-commerce-mobile.png";
 import aiDesktop from "../assets/aireadme-desktop.png";
@@ -9,7 +8,7 @@ import aiMobile from "../assets/aireadme-mobile.png";
 import portDesktop from "../assets/port-desktop.png";
 import portMobile from "../assets/port-mobile.png";
 
-/* -------------------- Device Toggle Icons -------------------- */
+/* --- Device Toggle Icons --- */
 const IconLaptop = (props) => (
   <svg viewBox="0 0 24 24" aria-hidden className="size-5" {...props}>
     <path
@@ -51,7 +50,7 @@ const IconExternal = (props) => (
   </svg>
 );
 
-/* -------------------- Data -------------------- */
+/* --- Data --- */
 const DEVICE = { DESKTOP: "desktop", MOBILE: "mobile" };
 
 const projects = [
@@ -61,7 +60,17 @@ const projects = [
     tagline:
       "End-to-end e-commerce platform for Fuji Energy, delivered solo from design to AWS deployment.",
     desc: "I built this project completely on my own, starting with Figma to map out user and client flows, creating mock designs, and working directly with the client to align on requirements. From there, I developed the frontend and backend, handled testing, and deployed everything on AWS. It’s a full production-ready e-commerce platform that supports both B2B and B2C transactions.",
-    tech: ["JS", "CSS", "HTML", "Firebase", "AWS", "React", "Bootstrap", "Stripe", "Figma"],
+    tech: [
+      "JS",
+      "CSS",
+      "HTML",
+      "Firebase",
+      "AWS",
+      "React",
+      "Bootstrap",
+      "Stripe",
+      "Figma",
+    ],
     previews: { desktop: ecomDesktop, mobile: ecomMobile },
     links: { github: null, demo: "https://ai-readme-generator-md.vercel.app/" },
   },
@@ -92,7 +101,7 @@ const projects = [
   },
 ];
 
-/* -------------------- UI -------------------- */
+/* --- UI --- */
 function DeviceToggle({ device, setDevice }) {
   return (
     <div className="device-toggle" role="tablist" aria-label="Device preview">
@@ -120,7 +129,6 @@ function DeviceToggle({ device, setDevice }) {
 }
 
 function TechStack({ items = [] }) {
-  // accent-colored text pills
   return (
     <ul className="mt-3 flex flex-wrap gap-2" aria-label="Tech stack">
       {items.map((t, i) => (
@@ -170,19 +178,15 @@ function ProjectCard({ item, index, device }) {
   const previewAlt = `${item.title} ${device} preview`;
 
   return (
-   <article
-  className="grid grid-cols-1 md:grid-cols-2 items-start gap-6 md:gap-8"
->
-
+    <article className="grid grid-cols-1 md:grid-cols-2 items-start gap-6 md:gap-8">
       {/* preview image */}
       <div
-  className={`media ${rounded} preview-surface ${
-    device === DEVICE.MOBILE
-      ? "media--mobile max-w-[360px] justify-self-center"
-      : "media--desktop w-full"
-  }`}
->
-
+        className={`media ${rounded} preview-surface ${
+          device === DEVICE.MOBILE
+            ? "media--mobile max-w-[360px] justify-self-center"
+            : "media--desktop w-full"
+        }`}
+      >
         <img
           src={previewSrc}
           alt={previewAlt}
@@ -191,13 +195,11 @@ function ProjectCard({ item, index, device }) {
         />
       </div>
 
-      {/* text */}
-     <div
-  className={`flex flex-col items-start ${
-    flip ? "pl-4 md:pl-8" : "pr-4 md:pr-8"
-  }`}
->
-
+      <div
+        className={`flex flex-col items-start ${
+          flip ? "pl-4 md:pl-8" : "pr-4 md:pr-8"
+        }`}
+      >
         <h3 className="project-title text-[1.15rem] font-semibold leading-snug">
           {item.title}
         </h3>
@@ -220,16 +222,16 @@ export default function Projects() {
   return (
     <section id="projects" className="py-10 sm:py-12">
       <div className="mx-auto max-w-6xl px-4">
-       <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] items-center gap-4">
-  <div className="hidden md:block" />
-  <h2 className="section-title text-center md:justify-self-center text-4xl sm:text-5xl">
-  Projects
-</h2>
-  <div className="justify-self-center md:justify-self-end">
-    <DeviceToggle device={device} setDevice={setDevice} />
-  </div>
-</div>
+        {/* Title & Toggle */}
+        <div className="text-center">
+          <h2 className="section-title text-4xl sm:text-5xl">Projects</h2>
 
+          <div className="toggle-under-title">
+            <DeviceToggle device={device} setDevice={setDevice} />
+          </div>
+        </div>
+
+        {/* Cards */}
         <div className="mt-6 grid grid-cols-1 gap-10">
           {projects.map((p, i) => (
             <div

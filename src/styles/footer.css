@@ -8,6 +8,8 @@
 /* Footer container */
 .site-footer {
   position: relative;
+  margin-top: -2rem;
+  background-color: transparent !important;
 }
 
 .site-footer::after {

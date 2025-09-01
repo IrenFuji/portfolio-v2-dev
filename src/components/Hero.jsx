@@ -16,7 +16,7 @@ export default function Hero() {
         <div className="hero-animate text-center">
           {/* Headline */}
           <h1 className="hero-title text-[clamp(28px,5vw,36px)]">
-            I’m Iren,
+            Hi! I’m Iren,
           </h1>
 
           <h2 className="hero-title hero-accent-title text-[clamp(28px,5vw,36px)] font-extrabold">

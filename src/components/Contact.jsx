@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import "../styles/contact.css";
 
 export default function Contact() {
-  const [toast, setToast] = useState(null); 
+  const [toast, setToast] = useState(null);
   const [busy, setBusy] = useState(false);
   const [errors, setErrors] = useState({
     name: false,
@@ -28,16 +28,11 @@ export default function Contact() {
     const name = form.elements["name"]?.value?.trim() ?? "";
     const email = form.elements["email"]?.value?.trim() ?? "";
     const message = form.elements["message"]?.value?.trim() ?? "";
-    const honey = form.elements["_honey"]?.value ?? ""; // spam trap
+    const honey = form.elements["_honey"]?.value ?? "";
 
-    if (honey) return; // bot, just ignore
+    if (honey) return;
 
-    // required validation
-    const nextErrors = {
-      name: !name,
-      email: !email,
-      message: !message,
-    };
+    const nextErrors = { name: !name, email: !email, message: !message };
     setErrors(nextErrors);
 
     if (nextErrors.name || nextErrors.email || nextErrors.message) {
@@ -47,7 +42,6 @@ export default function Contact() {
     }
 
     setBusy(true);
-
     try {
       const res = await fetch(
         "https://formsubmit.co/ajax/irenpavlenko22@gmail.com",
@@ -67,7 +61,6 @@ export default function Contact() {
           }),
         }
       );
-
       if (!res.ok) throw new Error("Send failed");
       setToast("ok");
       form.reset();
@@ -81,7 +74,10 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-16 sm:py-20 lg:py-24">
+    <section
+      id="contact"
+      className="relative py-10 sm:py-12 lg:py-16 scroll-mt-20" 
+    >
       <div className="mx-auto w-full max-w-6xl px-6 sm:px-8">
         <h2 className="contact-title text-center text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight flex items-center justify-center gap-3">
           Let’s work together{" "}
@@ -91,11 +87,19 @@ export default function Contact() {
         </h2>
 
         {/* Content */}
-        <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+        <div
+          className="
+            mt-6 sm:mt-8                      /* less gap above grid */
+            grid grid-cols-1 lg:grid-cols-2
+            gap-8 lg:gap-12
+            items-center                      /* vertical centering of both columns */
+            justify-items-center              /* center each column horizontally */
+          "
+        >
           {/* LEFT: FORM */}
-          <div className="w-full max-w-2xl">
+          <div className="w-full max-w-2xl place-self-center">
             <div className="relative">
-              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+              <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                 {/* Honeypot as spam trap */}
                 <input
                   type="text"
@@ -109,7 +113,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-base sm:text-lg font-semibold contact-title mb-2"
+                    className="block text-base sm:text-lg contact-title mb-2"
                   >
                     Full name
                   </label>
@@ -132,7 +136,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-base sm:text-lg font-semibold contact-title mb-2"
+                    className="block text-base sm:text-lg contact-title mb-2"
                   >
                     E-mail
                   </label>
@@ -155,7 +159,7 @@ export default function Contact() {
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-base sm:text-lg font-semibold contact-title mb-2"
+                    className="block text-base sm:text-lg contact-title mb-2"
                   >
                     Message
                   </label>
@@ -174,7 +178,7 @@ export default function Contact() {
                 </div>
 
                 {/* Submit & toast anchor */}
-                <div className="pt-2">
+                <div className="pt-1">
                   <button
                     type="submit"
                     className="contact-primary-btn"
@@ -185,7 +189,7 @@ export default function Contact() {
                 </div>
               </form>
 
-              {/* Toast (accessible) */}
+              {/* Toast */}
               {toast && (
                 <div
                   className={`contact-toast ${isDark ? "" : "light"}`}
@@ -203,8 +207,8 @@ export default function Contact() {
           </div>
 
           {/* RIGHT: Contact details */}
-          <div className="w-full max-w-xl contact-right-align">
-            <div className="flex flex-col gap-8">
+          <div className="w-full max-w-xl contact-right-align place-self-center">
+            <div className="flex flex-col gap-7">
               {/* Location */}
               <div className="flex items-start gap-4">
                 <svg
