@@ -9,7 +9,7 @@
   --page-light: #ffffff;
   --page-dark: #0a1930;
 
-  /* sizing tokens (smaller + responsive) */
+  /* sizing tokens  */
   --chip-fz: clamp(0.82rem, 1.6vw, 0.95rem);
   --label-fz: clamp(0.82rem, 1.5vw, 0.9rem);
   --icon-size: clamp(28px, 5vw, 34px);
@@ -18,21 +18,30 @@
 }
 
 /* SECTION */
-.tech-section { padding: 4rem 1rem; }
-@media (min-width: 768px) { .tech-section { padding: 6rem 1rem; } }
+.tech-section {
+  padding: 4rem 1rem;
+}
+@media (min-width: 768px) {
+  .tech-section {
+    padding: 6rem 1rem;
+  }
+}
 
-/* Align width & centering to feel like Projects */
-.tech-shell { max-width: 1120px; margin: 0 auto; }
+.tech-shell {
+  max-width: 1120px;
+  margin: 0 auto;
+}
 
 /* ---------- Title ---------- */
 .tech-title {
-  font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text-dark);
-  text-align: center;
-  margin-bottom: 1.5rem; /* a tad tighter */
+  margin-bottom: 1.5rem;
+  font-size: clamp(36px, 2.2vw + 24px, 36px);
 }
-.dark .tech-title { color: var(--text-light); }
+.dark .tech-title {
+  color: var(--text-light);
+}
 
 /* ---------- Filter chips  ---------- */
 .tech-controls {
@@ -44,7 +53,7 @@
   padding-bottom: 0.25rem;
 }
 
-/* Mobile: horizontal scroll, no wrap */
+/* Mobile horizontal scroll */
 @media (max-width: 640px) {
   .tech-controls {
     flex-wrap: nowrap;
@@ -52,37 +61,58 @@
     justify-content: flex-start;
     -webkit-overflow-scrolling: touch;
   }
-  .tech-controls::-webkit-scrollbar { height: 6px; }
+  .tech-controls::-webkit-scrollbar {
+    height: 6px;
+  }
   .tech-controls::-webkit-scrollbar-thumb {
-    background: rgba(100, 255, 218, 0.35);
+    background: rgba(100, 255, 219, 0.511);
     border-radius: 999px;
   }
 }
 
 .tech-chip {
   position: relative;
-  font-weight: 700;               /* was 800 */
-  font-size: var(--chip-fz);      /* responsive smaller */
-  padding: 0.45rem 0.85rem;       /* slightly reduced */
+  font-size: var(--chip-fz);
+  padding: 0.45rem 0.85rem;
   border-radius: 999px;
+  margin-top: 0.5rem;
   cursor: pointer;
   background: linear-gradient(var(--page-light), var(--page-light)) padding-box,
-    linear-gradient(135deg, var(--accent), rgba(100, 255, 218, 0.55), var(--accent)) border-box;
+    linear-gradient(
+        135deg,
+        var(--accent),
+        rgba(100, 255, 218, 0.55),
+        var(--accent)
+      )
+      border-box;
   border: 2px solid transparent;
   color: var(--text-dark);
-  transition: transform 0.12s ease, filter 0.18s ease, background 0.18s ease, color 0.18s ease;
+  transition: transform 0.12s ease, filter 0.18s ease, background 0.18s ease,
+    color 0.18s ease;
   white-space: nowrap;
   -webkit-tap-highlight-color: transparent;
 }
-.tech-chip:hover { transform: translateY(-1px); filter: saturate(1.05); }
-.tech-chip:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.35); }
+.tech-chip:hover {
+  transform: translateY(-1px);
+  filter: saturate(1.05);
+}
+.tech-chip:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.35);
+}
 .tech-chip[aria-pressed="true"] {
   background: linear-gradient(135deg, var(--accent), rgba(100, 255, 218, 0.85));
   color: #0a1930;
 }
 .dark .tech-chip {
   background: linear-gradient(var(--page-dark), var(--page-dark)) padding-box,
-    linear-gradient(135deg, var(--accent), rgba(100, 255, 218, 0.55), var(--accent)) border-box;
+    linear-gradient(
+        135deg,
+        var(--accent),
+        rgba(100, 255, 218, 0.55),
+        var(--accent)
+      )
+      border-box;
   color: var(--text-light);
 }
 .tech-chip[aria-pressed="true"],
@@ -95,28 +125,34 @@
   box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.35);
 }
 
-/* Narrow phones: tiny chip tweak */
+/* resp phones for tiny chip */
 @media (max-width: 400px) {
-  .tech-chip { padding: 0.38rem 0.68rem; }
+  .tech-chip {
+    padding: 0.38rem 0.68rem;
+  }
 }
 
-/* ---------- Grid / Cards ---------- */
+/* ---------- Cards ---------- */
 .tech-grid {
   display: grid;
-  gap: 12px;                              /* slightly tighter */
-  margin-top: 0.25rem;
+  margin-top: 0.5rem !important;
   width: 100%;
-  max-width: 980px;
+  max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-  grid-template-columns: repeat(auto-fit, minmax(var(--grid-min), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 220px));
+  justify-content: center;
 }
 @media (min-width: 1024px) {
-  .tech-grid { gap: 14px; }
+  .tech-grid {
+    gap: 14px;
+  }
 }
 /* small devices */
 @media (max-width: 640px) {
-  .tech-grid { gap: 10px; }
+  .tech-grid {
+    gap: 10px;
+  }
 }
 
 /* card */
@@ -126,20 +162,12 @@
   align-items: center;
   gap: 0.5rem;
   min-height: var(--item-min-h);
-  padding: 10px 12px;                      /* a hair smaller */
-  border-radius: 16px;
   text-align: center;
-  background: var(--card-light);
-  box-shadow: 0 4px 16px rgba(16, 24, 40, 0.08);
-  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
 }
-.tech-item:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(16, 24, 40, 0.14); }
-.dark .tech-item { background: var(--card-dark); box-shadow: 0 8px 28px rgba(2, 12, 27, 0.55); }
-.tech-item:focus-within { outline: 3px solid var(--accent); outline-offset: 2px; }
 
-/* ---------- Icon + Label ---------- */
+/* ---------- Icon | Label ---------- */
 .tech-icon {
-  font-size: calc(var(--icon-size) - 8px); /* keep SVGs proportional */
+  font-size: calc(var(--icon-size) - 8px);
   width: var(--icon-size);
   height: var(--icon-size);
   display: grid;
@@ -147,19 +175,30 @@
   line-height: 1;
   border-radius: 10px;
 }
-.tech-icon.monochrome { background: var(--tint-light); color: var(--text-dark); }
-.dark .tech-icon.monochrome { background: var(--tint-dark); color: var(--text-light); }
+.tech-icon.monochrome {
+  background: var(--tint-light);
+  color: var(--text-dark);
+}
+.dark .tech-icon.monochrome {
+  background: var(--tint-dark);
+  color: var(--text-light);
+}
 
 /* label */
 .tech-label {
   font-weight: 800;
   letter-spacing: 0.2px;
   color: var(--text-dark);
-  font-size: var(--label-fz);              /* smaller + responsive */
+  font-size: var(--label-fz);
 }
-.dark .tech-label { color: var(--text-light); }
+.dark .tech-label {
+  color: var(--text-light);
+}
 
 /* motion */
 @media (prefers-reduced-motion: reduce) {
-  .tech-item, .tech-chip { transition: none; }
+  .tech-item,
+  .tech-chip {
+    transition: none;
+  }
 }

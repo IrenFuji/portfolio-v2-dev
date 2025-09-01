@@ -33,11 +33,10 @@
 }
 
 .section-title {
-  font-size: clamp(2.25rem, 2.2vw + 1.5rem, 3rem);
+  font-size: clamp(36px, 2.2vw + 24px, 36px);
   line-height: 1.1;
-  font-weight: 800;
   letter-spacing: -0.02em;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 html:not(.dark) .section-title {
