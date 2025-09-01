@@ -1,6 +1,26 @@
 :root {
   --brand: #4ef4d6;
+  --header-bg-dark: rgba(10, 25, 48, 0.70);
+  --header-bg-light: rgba(255, 255, 255, 0.70);
+  --header-h: 68px; /* JS updates this on mount */
 }
+
+/* -------- sticky nav -------- */
+.site-header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  backdrop-filter: saturate(140%) blur(10px);
+  background: var(--header-bg-dark);
+  padding-top: env(safe-area-inset-top, 0px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+html:not(.dark) .site-header {
+  background: var(--header-bg-light);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+.site-header.is-scrolled { box-shadow: 0 8px 20px -12px rgba(0,0,0,0.35); }
 
 /* ------- Contact button ------- */
 .btn-contact {
@@ -14,66 +34,39 @@
   transition: all 0.2s ease;
   line-height: 1;
 }
-
-html:not(.dark) .btn-contact {
-  color: #0a1930;
-}
-.btn-contact:hover {
-  background-color: rgba(48, 231, 214, 0.1);
-}
+html:not(.dark) .btn-contact { color: #0a1930; }
+.btn-contact:hover { background-color: rgba(48, 231, 214, 0.1); }
 
 /* ------- navigation glowing dot ------- */
 .nav-dot {
   position: absolute;
   bottom: 0;
-  width: 12px;
-  height: 12px;
+  width: 12px; height: 12px;
   border-radius: 9999px;
   background: var(--brand);
-  box-shadow: 0 0 0 3px rgba(78, 244, 214, 0.15),
-    0 0 18px rgba(78, 244, 214, 0.75);
+  box-shadow: 0 0 0 3px rgba(78, 244, 214, 0.15), 0 0 18px rgba(78, 244, 214, 0.75);
   transform: translateX(0);
   pointer-events: none;
   z-index: 1;
 }
 
 /* link states */
-.nav-link {
-  transition: opacity 150ms ease, color 150ms ease;
-}
-.nav-link[aria-current="page"] {
-  opacity: 1;
-}
-.nav-link:not([aria-current="page"]) {
-  opacity: 0.85;
-}
-.nav-link:hover {
-  opacity: 1;
-}
+.nav-link { transition: opacity 150ms ease, color 150ms ease; -webkit-tap-highlight-color: transparent; }
+.nav-link[aria-current="page"] { opacity: 1; }
+.nav-link:not([aria-current="page"]) { opacity: 0.85; }
+.nav-link:hover { opacity: 1; }
 
 /* ------- Mobile sheet ------- */
 .mobile-sheet {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%;
+  left: 0; right: 0; top: 100%;
   backdrop-filter: blur(10px);
   background: rgba(10, 25, 48, 0.92);
 }
-html:not(.dark) .mobile-sheet {
-  background: rgba(255, 255, 255, 0.92);
-}
+html:not(.dark) .mobile-sheet { background: rgba(255, 255, 255, 0.92); }
 
-header,
-nav,
-.mobile-sheet,
-.nav-dot {
-  overflow: visible;
-}
+header, nav, .mobile-sheet, .nav-dot { overflow: visible; }
 
-/* ------- compress spacing & sizes ------- */
 @media (max-width: 768px) {
-  .btn-contact {
-    padding: 0.4rem 1rem;
-  }
+  .btn-contact { padding: 0.5rem 1.05rem; }
 }
