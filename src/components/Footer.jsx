@@ -28,7 +28,7 @@ const Footer = () => {
           aria-label="Site credits"
         >
           {since}&ndash;{presentLabel} &middot; Coded &amp; Designed by{" "}
-          <span className="footer-name">Iren Fujiharu</span>
+          <span className="footer-name">Iren P.</span>
         </p>
       </div>
 
