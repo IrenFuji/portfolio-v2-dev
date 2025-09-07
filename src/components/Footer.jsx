@@ -18,7 +18,7 @@ const Footer = () => {
 
   const since = 2024;
   const presentLabel =
-    new Date().getFullYear() > since ? "Present" : `${since}`;
+    new Date().getFullYear() > since ? "present" : `${since}`;
 
   return (
     <footer className="site-footer relative app-bg">
@@ -27,7 +27,7 @@ const Footer = () => {
           className="footer-copy text-center text-[clamp(13px,1.6vw,12px)] font-medium tracking-wide"
           aria-label="Site credits"
         >
-          {since}&ndash;{presentLabel} &middot; Coded &amp; Designed by{" "}
+          {since} &ndash; {presentLabel} &middot; Coded &amp; Designed by{" "}
           <span className="footer-name">Iren P.</span>
         </p>
       </div>
