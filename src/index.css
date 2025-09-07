@@ -4,7 +4,7 @@
 
 .app-bg {
   background-color: #faf9f6;
-  overflow-x: hidden; /* prevent canvas glow from creating horizontal scroll */
+  overflow-x: hidden; 
 }
 
 .dark .app-bg {
