@@ -24,7 +24,7 @@ const ThemeToggle = () => {
       onClick={() => setDark((d) => !d)}
       className="inline-flex items-center justify-center"
     >
-      {/* Sun / Moon icons */}
+      {/* sun, moon icons */}
       {dark ? (
         <svg width="18" height="18" viewBox="0 0 24 24" className="fill-white">
           <path d="M21.64 13A9 9 0 1 1 11 2.36 7 7 0 1 0 21.64 13z" />

@@ -4,7 +4,7 @@ import "../styles/footer.css";
 const Footer = () => {
   const [showTop, setShowTop] = useState(false);
 
-  // Show "Back to top" when scrolled
+  // back to top when scrolled
   useEffect(() => {
     const onScroll = () => setShowTop(window.scrollY > 240);
     onScroll();
@@ -14,6 +14,11 @@ const Footer = () => {
 
   const handleBackToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    try {
+      if (window.location.hash !== "#home") {
+        window.location.hash = "#home";
+      }
+    } catch {}
   };
 
   const since = 2024;
@@ -32,7 +37,7 @@ const Footer = () => {
         </p>
       </div>
 
-      {/* Back to top */}
+      {/* back to top */}
       <div className="pointer-events-none">
         <button
           type="button"

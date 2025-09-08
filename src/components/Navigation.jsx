@@ -55,7 +55,6 @@ const Navigation = () => {
 
   const goTo = (id) => {
     if (id === "home") {
-      // always go to the very top for the hero
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
@@ -63,7 +62,7 @@ const Navigation = () => {
     const el = document.getElementById(id);
     if (!el) return;
 
-    const y = el.getBoundingClientRect().top + window.scrollY - (headerH() + 8); 
+    const y = el.getBoundingClientRect().top + window.scrollY - (headerH() + 8);
     window.scrollTo({ top: y, behavior: "smooth" });
   };
 
@@ -149,6 +148,15 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", forceHomeNearTop);
   }, [active]);
 
+  // NEW: move the dot any time `active` changes (scroll, hash, clicks, etc.)
+  useEffect(() => {
+    if (!linkRefs.current[active]) return;
+    dotTargetId.current = active;
+    const id = active;
+    const raf = requestAnimationFrame(() => moveDotTo(id));
+    return () => cancelAnimationFrame(raf);
+  }, [active]);
+
   useEffect(() => {
     const dot = dotRef.current;
     if (!dot) return;
@@ -218,23 +226,32 @@ const Navigation = () => {
     }
   }, [menuOpen]);
 
-  // accessibility
+  // accessibility + sync on hash-only navigations
   useEffect(() => {
     const onKey = (e) => e.key === "Escape" && setMenuOpen(false);
-    const onHash = () => setMenuOpen(false);
+
+    const onHash = () => {
+      setMenuOpen(false);
+      const id = window.location.hash?.replace("#", "");
+      const valid = id && (links.some((l) => l.id === id) || id === "contact");
+      if (valid) {
+        setActive(id);
+      }
+    };
+
     window.addEventListener("keydown", onKey);
     window.addEventListener("hashchange", onHash);
     return () => {
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("hashchange", onHash);
     };
-  }, []);
+  }, [links]);
 
   const onLinkClick = (e, id) => {
     e.preventDefault();
     setActive(id);
     setHash(id);
-    dotTargetId.current = id; 
+    dotTargetId.current = id;
     moveDotTo(id);
     goTo(id);
     setMenuOpen(false);
@@ -242,9 +259,9 @@ const Navigation = () => {
 
   const onContactClick = (e) => {
     e.preventDefault();
-    setActive("contact"); 
+    setActive("contact");
     setHash("contact");
-    dotTargetId.current = "contact"; 
+    dotTargetId.current = "contact";
     moveDotTo("contact");
     goTo("contact");
     setMenuOpen(false);
@@ -287,7 +304,7 @@ const Navigation = () => {
               ))}
               <li>
                 <a
-                  ref={(n) => (linkRefs.current["contact"] = n)} 
+                  ref={(n) => (linkRefs.current["contact"] = n)}
                   href="#contact"
                   onClick={onContactClick}
                   className="btn-contact text-sm md:text-[0.95rem]"
