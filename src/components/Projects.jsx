@@ -72,7 +72,7 @@ const projects = [
       "Figma",
     ],
     previews: { desktop: ecomDesktop, mobile: ecomMobile },
-    links: { github: null, demo: "https://ai-readme-generator-md.vercel.app/" },
+    links: { github: null, demo: null },
   },
   {
     key: "aireadme",
