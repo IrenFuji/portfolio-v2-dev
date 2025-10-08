@@ -1,1 +1,99 @@
-# coming soon...
+# Iren Pavlenko | Dev Portfolio
+
+Welcome to the repository for Iren Pavlenko's Full-Stack Developer Portfolio. This project showcases my skills and projects as a developer, featuring a responsive and modern web design.
+
+## Table of Contents
+
+- [About](#about)
+- [Features](#features)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Contact](#contact)
+- [License](#license)
+
+## About
+
+This repository contains the source code for my personal portfolio website. It highlights my skills as a Full-Stack Developer, featuring projects that I've worked on, my technical stack, and a contact form for collaboration opportunities.
+
+## Features
+
+- **Responsive Design**: Optimized for various devices including desktop and mobile.
+- **Dark Mode Toggle**: User can switch between light and dark themes.
+- **Smooth Animations**: Utilizes GSAP for animations and transitions.
+- **Contact Form**: Integrated with FormSubmit for serverless form submissions.
+- **Project Showcase**: Interactive sections displaying detailed information about each project.
+
+## Technologies
+
+- **Frontend**: React, Tailwind CSS, GSAP
+- **Build Tools**: Vite
+- **Linting**: ESLint
+- **CI/CD**: Netlify
+- **Design Tools**: Figma
+
+## Installation
+
+To run this project locally, follow these steps:
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/IrenFuji/portfolio-v2-dev.git
+   cd portfolio-v2-dev
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+
+   ```bash
+   npm run dev
+   ```
+
+4. **Open the website in your browser:**
+
+   Go to `http://localhost:3000`
+
+## Usage
+
+- Explore different sections like "Home", "Technologies", "Projects", and "Contact".
+- Use the contact form to send a message.
+- Toggle between light and dark modes using the theme toggle button.
+
+## Project Structure
+
+```plaintext
+src/
+  assets/           # Images and other assets
+  components/       # React components
+  hooks/            # Custom hooks
+  styles/           # CSS files
+  index.jsx         # Main entry point
+  index.css         # Global styles
+
+public/
+  assets/           # Public assets like favicon
+
+.eslintrc.js        # ESLint configuration
+postcss.config.js   # PostCSS configuration
+tailwind.config.js  # Tailwind CSS configuration
+vite.config.js      # Vite build configuration
+```
+
+## Contact
+
+Iren Pavlenko - [irenpavlenko22@gmail.com](mailto:irenpavlenko22@gmail.com)
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE). Feel free to use, modify, and distribute this code as you see fit.
+
+---
+
+Thank you for visiting my portfolio! I am open to collaboration and new opportunities. Feel free to reach out through the contact form or any of the provided contact methods.
