@@ -1,6 +1,6 @@
-# Iren Pavlenko | Dev Portfolio
+# Full-Stack Dev Portfolio
 
-Welcome to the repository for Iren Pavlenko's Full-Stack Developer Portfolio. This project showcases my skills and projects as a developer, featuring a responsive and modern web design.
+Welcome to the repository for Iren's Full-Stack Developer Portfolio. This project showcases my skills and projects as a developer, featuring a responsive and modern web design.
 
 ## Table of Contents
 
