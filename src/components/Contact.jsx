@@ -289,7 +289,7 @@ export default function Contact() {
               {/* Socials */}
               <div className="flex items-center gap-5 contact-social">
                 <a
-                  href="https://www.linkedin.com/in/irenepavlenko/"
+                  href="https://www.linkedin.com/in/irenpavlenko"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"
