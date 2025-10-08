@@ -88,11 +88,11 @@ vite.config.js      # Vite build configuration
 
 ## Contact
 
-Iren Pavlenko - [irenpavlenko22@gmail.com](mailto:irenpavlenko22@gmail.com)
+[irenpavlenko22@gmail.com](mailto:irenpavlenko22@gmail.com)
 
 ## License
 
-This project is open source and available under the [MIT License](LICENSE). Feel free to use, modify, and distribute this code as you see fit.
+ [MIT License](LICENSE).
 
 ---
 
