@@ -86,10 +86,6 @@ tailwind.config.js  # Tailwind CSS configuration
 vite.config.js      # Vite build configuration
 ```
 
-## Contact
-
-[irenpavlenko22@gmail.com](mailto:irenpavlenko22@gmail.com)
-
 ## License
 
  [MIT License](LICENSE).
