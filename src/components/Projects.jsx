@@ -72,7 +72,10 @@ const projects = [
       "Figma",
     ],
     previews: { desktop: ecomDesktop, mobile: ecomMobile },
-    links: { github: "https://github.com/IrenFuji/fuji-energy-ecommerce-mern", demo: "https://www.fuji-energy.com/", demo: "https://admin.fuji-energy.com/#/login" },
+    links: { 
+      github: "https://github.com/IrenFuji/fuji-energy-ecommerce-mern", 
+      demo: "https://www.fuji-energy.com/", 
+      demo: "https://admin.fuji-energy.com/#/login" },
   },
   {
     key: "aireadme",
