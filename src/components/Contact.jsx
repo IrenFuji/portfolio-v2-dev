@@ -20,7 +20,7 @@ export default function Contact() {
   const clearFieldError = (field) =>
     setErrors((e) => (e[field] ? { ...e, [field]: false } : e));
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (busy) return;
 
@@ -42,41 +42,18 @@ export default function Contact() {
     }
 
     setBusy(true);
-    try {
-      const res = await fetch(
-        "https://formsubmit.co/ajax/irenpavlenko22@gmail.com",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            name,
-            email,
-            message,
-            _subject: `Portfolio contact from ${name}`,
-            _template: "table",
-            _captcha: "false",
-          }),
-        }
-      );
-      if (!res.ok) throw new Error("Send failed");
-      setToast("ok");
-      form.reset();
-    } catch (err) {
-      console.error(err);
-      setToast("err");
-    } finally {
-      setBusy(false);
-      setTimeout(() => setToast(null), 5000);
-    }
+    form.submit();
+
+    setToast("ok");
+    setBusy(false);
+    form.reset();
+    setTimeout(() => setToast(null), 5000);
   };
 
   return (
     <section
       id="contact"
-      className="relative py-10 sm:py-12 lg:py-16 scroll-mt-20" 
+      className="relative py-10 sm:py-12 lg:py-16 scroll-mt-20"
     >
       <div className="mx-auto w-full max-w-6xl px-6 sm:px-8">
         <h2 className="contact-title text-center text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight flex items-center justify-center gap-3">
@@ -86,27 +63,47 @@ export default function Contact() {
           </span>
         </h2>
 
-        {/* Content */}
         <div
           className="
-            mt-6 sm:mt-8                      /* less gap above grid */
+            mt-6 sm:mt-8
             grid grid-cols-1 lg:grid-cols-2
             gap-8 lg:gap-12
-            items-center                      /* vertical centering of both columns */
-            justify-items-center              /* center each column horizontally */
+            items-center
+            justify-items-center
           "
         >
-          {/* LEFT: FORM */}
           <div className="w-full max-w-2xl place-self-center">
             <div className="relative">
-              <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-                {/* Honeypot as spam trap */}
+              {/* ⭐ FORM */}
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-5"
+                noValidate
+                action="https://formsubmit.co/irenpavlenko22@gmail.com"
+                method="POST"
+                target="formsubmit_iframe"
+              >
+                <iframe
+                  name="formsubmit_iframe"
+                  style={{ display: "none" }}
+                ></iframe>
+
+                {/* Honeypot */}
                 <input
                   type="text"
                   name="_honey"
                   tabIndex={-1}
                   autoComplete="off"
                   style={{ display: "none" }}
+                />
+
+                {/* FormSubmit options */}
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="Portfolio contact form submission"
                 />
 
                 {/* Full name */}
@@ -177,7 +174,6 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* Submit & toast anchor */}
                 <div className="pt-1">
                   <button
                     type="submit"
@@ -189,7 +185,7 @@ export default function Contact() {
                 </div>
               </form>
 
-              {/* Toast */}
+              {/* Toast messages */}
               {toast && (
                 <div
                   className={`contact-toast ${isDark ? "" : "light"}`}
@@ -206,10 +202,9 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* RIGHT: Contact details */}
+          {/* RIGHT SIDE */}
           <div className="w-full max-w-xl contact-right-align place-self-center">
             <div className="flex flex-col gap-7">
-              {/* Location */}
               <div className="flex items-start gap-4">
                 <svg
                   className="mt-[2px] h-6 w-6 flex-shrink-0"
@@ -238,7 +233,6 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Phone */}
               <div className="flex items-start gap-4">
                 <svg
                   className="mt-[2px] h-6 w-6 flex-shrink-0"
@@ -262,7 +256,6 @@ export default function Contact() {
                 </a>
               </div>
 
-              {/* Email */}
               <div className="flex items-start gap-4">
                 <svg
                   className="mt-[2px] h-6 w-6 flex-shrink-0"
@@ -286,7 +279,6 @@ export default function Contact() {
                 </a>
               </div>
 
-              {/* Socials */}
               <div className="flex items-center gap-5 contact-social">
                 <a
                   href="https://www.linkedin.com/in/irenpavlenko"
