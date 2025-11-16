@@ -172,7 +172,7 @@ function Links({ links }) {
           className="btn-accent"
         >
           <IconExternal className="-ml-0.5" />
-          <span className="ml-1">Live Store</span>
+          <span className="ml-1">Live Demo</span>
         </a>
       )}
 
