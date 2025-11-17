@@ -39,7 +39,6 @@ const IconGitHub = (props) => (
   </svg>
 );
 
-/* External link icon for Live Demo */
 const IconExternal = (props) => (
   <svg
     viewBox="0 0 24 24"
@@ -53,7 +52,6 @@ const IconExternal = (props) => (
   </svg>
 );
 
-/* Admin / dashboard icon for Admin Panel */
 const IconAdmin = (props) => (
   <svg
     viewBox="0 0 24 24"
@@ -162,19 +160,20 @@ function TechStack({ items = [] }) {
   );
 }
 
+/* --- UPDATED LINKS (GitHub icon only, aligned, size-10) --- */
 function Links({ links }) {
   return (
-    <div className="mt-5 flex flex-wrap items-center gap-3">
+    <div className="mt-5 flex flex-wrap items-center gap-6">
+      
       {links.github && (
         <a
           href={links.github}
           target="_blank"
           rel="noreferrer"
-          className="btn-ghost"
-          aria-label="GitHub"
+          className="btn-ghost flex flex-col items-center"
+          aria-label="GitHub repository"
         >
-          <IconGitHub />
-          <span className="sr-only">GitHub</span>
+          <IconGitHub className="size-10" />
         </a>
       )}
 
@@ -183,9 +182,9 @@ function Links({ links }) {
           href={links.demo}
           target="_blank"
           rel="noreferrer"
-          className="btn-accent"
+          className="btn-accent flex flex-col items-center"
         >
-          <IconExternal className="mr-1" />
+          <IconExternal className="size-10 mb-1" />
           <span>Live Demo</span>
         </a>
       )}
@@ -195,12 +194,13 @@ function Links({ links }) {
           href={links.admin}
           target="_blank"
           rel="noreferrer"
-          className="btn-accent"
+          className="btn-accent flex flex-col items-center"
         >
-          <IconAdmin className="mr-1" />
+          <IconAdmin className="size-10 mb-1" />
           <span>Admin Panel</span>
         </a>
       )}
+
     </div>
   );
 }
@@ -214,7 +214,6 @@ function ProjectCard({ item, index, device }) {
 
   return (
     <article className="grid grid-cols-1 md:grid-cols-2 items-start gap-6 md:gap-8">
-      {/* preview image */}
       <div
         className={`media ${rounded} preview-surface ${
           device === DEVICE.MOBILE
@@ -238,7 +237,10 @@ function ProjectCard({ item, index, device }) {
         <h3 className="project-title text-[1.15rem] font-semibold leading-snug">
           {item.title}
         </h3>
-        <p className="project-sub mt-1 text-[13px] italic">{item.tagline}</p>
+
+        <p className="project-sub mt-1 text-[13px] italic">
+          {item.tagline}
+        </p>
 
         <p className="project-body mt-3 max-w-prose text-[15px] leading-relaxed">
           {item.desc}
@@ -257,7 +259,7 @@ export default function Projects() {
   return (
     <section id="projects" className="py-10 sm:py-12">
       <div className="mx-auto max-w-6xl px-4">
-        {/* Title & Toggle */}
+        
         <div className="text-center">
           <h2 className="section-title text-4xl sm:text-5xl">Projects</h2>
 
@@ -266,7 +268,6 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* Cards */}
         <div className="mt-6 grid grid-cols-1 gap-10">
           {projects.map((p, i) => (
             <div
@@ -277,6 +278,7 @@ export default function Projects() {
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
