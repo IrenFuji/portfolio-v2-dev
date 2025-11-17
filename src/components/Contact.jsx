@@ -100,7 +100,7 @@ export default function Contact() {
                 {/* Honeypot */}
                 <input
                   type="text"
-                  name="_honey"
+                  name="_gotcha"
                   tabIndex={-1}
                   autoComplete="off"
                   style={{ display: "none" }}
