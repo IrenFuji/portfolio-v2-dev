@@ -39,16 +39,30 @@ const IconGitHub = (props) => (
   </svg>
 );
 
+/* External link icon for Live Demo */
 const IconExternal = (props) => (
   <svg
     viewBox="0 0 24 24"
     fill="currentColor"
     aria-hidden
-    className="size-1"
+    className="size-10"
     {...props}
   >
     <path d="M14 3h7v7h-2V6.414l-8.293 8.293-1.414-1.414L17.586 5H14V3z" />
     <path d="M5 5h6v2H7v10h10v-4h2v6H5V5z" />
+  </svg>
+);
+
+/* Admin / dashboard icon for Admin Panel */
+const IconAdmin = (props) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden
+    className="size-10"
+    {...props}
+  >
+    <path d="M4 4h7v7H4V4zm9 0h7v7h-7V4zM4 13h7v7H4v-7zm9 0h7v7h-7v-7z" />
   </svg>
 );
 
@@ -76,10 +90,10 @@ const projects = [
       "Figma",
     ],
     previews: { desktop: ecomDesktop, mobile: ecomMobile },
-    links: { 
-      github: "https://github.com/IrenFuji/fuji-energy-ecommerce-mern", 
+    links: {
+      github: "https://github.com/IrenFuji/fuji-energy-ecommerce-mern",
       demo: "https://www.fuji-energy.com/",
-      admin: "https://admin.fuji-energy.com/#/login"
+      admin: "https://admin.fuji-energy.com/#/login",
     },
   },
   {
@@ -171,8 +185,8 @@ function Links({ links }) {
           rel="noreferrer"
           className="btn-accent"
         >
-          <IconExternal className="-ml-0.5" />
-          <span className="ml-1">Live Demo</span>
+          <IconExternal className="mr-1" />
+          <span>Live Demo</span>
         </a>
       )}
 
@@ -183,8 +197,8 @@ function Links({ links }) {
           rel="noreferrer"
           className="btn-accent"
         >
-          <IconExternal className="-ml-0.5" />
-          <span className="ml-1">Admin Panel</span>
+          <IconAdmin className="mr-1" />
+          <span>Admin Panel</span>
         </a>
       )}
     </div>
