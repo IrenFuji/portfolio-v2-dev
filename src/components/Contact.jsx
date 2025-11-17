@@ -20,7 +20,7 @@ export default function Contact() {
   const clearFieldError = (field) =>
     setErrors((e) => (e[field] ? { ...e, [field]: false } : e));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (busy) return;
 
@@ -41,13 +41,34 @@ export default function Contact() {
       return;
     }
 
+    // ---- Web3Forms submission ----
     setBusy(true);
-    form.submit();
 
-    setToast("ok");
-    setBusy(false);
-    form.reset();
-    setTimeout(() => setToast(null), 5000);
+    try {
+      const formData = new FormData(form);
+      formData.append("access_key", "58511850-450f-4194-a50c-b9c44dc9a1ae");
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setToast("ok");
+        form.reset();
+      } else {
+        console.error("Web3Forms Error:", data);
+        setToast("err");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setToast("err");
+    } finally {
+      setBusy(false);
+      setTimeout(() => setToast(null), 5000);
+    }
   };
 
   return (
@@ -74,20 +95,8 @@ export default function Contact() {
         >
           <div className="w-full max-w-2xl place-self-center">
             <div className="relative">
-              {/* ⭐ FORM */}
-              <form
-                onSubmit={handleSubmit}
-                className="space-y-5"
-                noValidate
-                action="https://formsubmit.co/irenpavlenko22@gmail.com"
-                method="POST"
-                target="formsubmit_iframe"
-              >
-                <iframe
-                  name="formsubmit_iframe"
-                  style={{ display: "none" }}
-                ></iframe>
-
+              
+              <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                 {/* Honeypot */}
                 <input
                   type="text"
@@ -95,15 +104,6 @@ export default function Contact() {
                   tabIndex={-1}
                   autoComplete="off"
                   style={{ display: "none" }}
-                />
-
-                {/* FormSubmit options */}
-                <input type="hidden" name="_template" value="table" />
-                <input type="hidden" name="_captcha" value="false" />
-                <input
-                  type="hidden"
-                  name="_subject"
-                  value="Portfolio contact form submission"
                 />
 
                 {/* Full name */}
@@ -185,7 +185,7 @@ export default function Contact() {
                 </div>
               </form>
 
-              {/* Toast messages */}
+              {/* Toast */}
               {toast && (
                 <div
                   className={`contact-toast ${isDark ? "" : "light"}`}
