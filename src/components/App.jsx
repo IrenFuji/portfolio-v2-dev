@@ -43,7 +43,6 @@ export default function App() {
           </FadeIn>
         </Suspense>
 
-        {/* Sections fade-in-up when scrolled into view */}
         <FadeIn as="section">
           <Technologies />
         </FadeIn>
