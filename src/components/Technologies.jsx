@@ -15,7 +15,7 @@ const CATEGORIES = {
   ],
   Backend: ["Node.js", "Express.js", "Python"],
   Databases: ["MongoDB", "Firebase"],
-  Hosting: ["Netlify", "Vercel"],
+  Hosting: ["AWS", "Netlify", "Vercel"],
   Tools: ["GitHub", "Bitbucket", "Postman", "Insomnia", "Docker", "Stripe"],
   DesignPM: ["Figma", "Miro", "Jira"],
   IDEs: ["VS Code", "IntelliJ", "PyCharm"],
