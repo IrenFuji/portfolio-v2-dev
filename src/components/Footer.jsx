@@ -37,7 +37,6 @@ const Footer = () => {
         </p>
       </div>
 
-      {/* back to top */}
       <div className="pointer-events-none">
         <button
           type="button"
