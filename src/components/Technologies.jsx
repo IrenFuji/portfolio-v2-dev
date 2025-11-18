@@ -16,10 +16,18 @@ const CATEGORIES = {
   Backend: ["Node.js", "Express.js", "Python"],
   Databases: ["MongoDB", "Firebase"],
   Hosting: ["AWS", "Netlify", "Vercel"],
-  Tools: ["GitHub", "Bitbucket", "Postman", "Insomnia", "Docker", "Stripe"],
+  Tools: [
+    "GitHub",
+    "Bitbucket",
+    "Postman",
+    "Insomnia",
+    "Docker",
+    "Stripe",
+    "SendGrid",
+  ],
   DesignPM: ["Figma", "Miro", "Jira"],
   IDEs: ["VS Code", "IntelliJ", "PyCharm"],
-  APIs: ["Stripe", "OpenAI API"],
+  APIs: ["Stripe", "OpenAI API", "Algolia"],
 };
 
 const TECHNOLOGIES = [
@@ -37,28 +45,38 @@ const TECHNOLOGIES = [
 
   { label: "MongoDB", iconClass: "devicon-mongodb-plain colored" },
   { label: "Firebase", iconClass: "devicon-firebase-plain colored" },
+
+  // Hosting
+  { label: "AWS", iconClass: "devicon-amazonwebservices-original colored" },
   { label: "Netlify", iconClass: "devicon-netlify-plain colored" },
   { label: "Vercel", iconClass: "devicon-vercel-original", monochrome: true },
 
+  // Tools
   { label: "GitHub", iconClass: "devicon-github-original", monochrome: true },
   { label: "Bitbucket", iconClass: "devicon-bitbucket-original colored" },
   { label: "Postman", iconClass: "devicon-postman-plain colored" },
   { label: "Insomnia", iconClass: "devicon-insomnia-plain colored" },
   { label: "Docker", iconClass: "devicon-docker-plain colored" },
+  { label: "SendGrid", iconClass: "devicon-sendgrid-plain colored" },
 
+  // Design & PM
   { label: "Figma", iconClass: "devicon-figma-plain colored" },
   { label: "Miro" },
   { label: "Jira", iconClass: "devicon-jira-plain colored" },
 
+  // Styling
   { label: "Tailwind", iconClass: "devicon-tailwindcss-original colored" },
   { label: "Bootstrap", iconClass: "devicon-bootstrap-plain colored" },
 
+  // IDEs
   { label: "VS Code", iconClass: "devicon-vscode-plain colored" },
   { label: "IntelliJ", iconClass: "devicon-intellij-plain colored" },
   { label: "PyCharm", iconClass: "devicon-pycharm-plain colored" },
 
+  // APIs
   { label: "OpenAI API" },
   { label: "Stripe" },
+  { label: "Algolia", iconClass: "devicon-algolia-plain colored" },
 ];
 
 const Technologies = () => {
@@ -73,9 +91,7 @@ const Technologies = () => {
   return (
     <section id="technologies" className="tech-section app-bg">
       <div className="tech-shell">
-        <h2 className="tech-title text-center md:text-5xl">
-          Tech Stack
-        </h2>
+        <h2 className="tech-title text-center md:text-5xl">Tech Stack</h2>
 
         {/* Filter chips */}
         <div className="tech-controls" role="group" aria-label="Tech filters">
