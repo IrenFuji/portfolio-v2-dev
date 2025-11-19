@@ -90,7 +90,7 @@ vite.config.js      # Vite build configuration
 
 ## License
 
- [MIT License](LICENSE).
+ [MIT License](LICENSE)
 
 ---
 
