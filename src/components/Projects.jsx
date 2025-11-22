@@ -91,7 +91,7 @@ const projects = [
     links: {
       github: "https://github.com/IrenFuji/fuji-energy-ecommerce-mern",
       demo: "https://www.fuji-energy.com/",
-      admin: "https://admin.fuji-energy.com/#/login",
+      admin: "https://admin.fuji-energy.co.jp/#/login",
     },
   },
   {
