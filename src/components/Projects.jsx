@@ -90,7 +90,7 @@ const projects = [
     previews: { desktop: ecomDesktop, mobile: ecomMobile },
     links: {
       github: "https://github.com/IrenFuji/fuji-energy-ecommerce-mern",
-      demo: "",
+      demo: "https://fuji-energy.co.jp/",
       admin: "https://admin.fuji-energy.co.jp/#/login",
     },
   },
