@@ -272,16 +272,16 @@ export default function Contact() {
                   />
                 </svg>
                 <a
-                  href="mailto:irenpavlenko22@gmail.com"
+                  href="mailto:irenfujiharu@gmail.com"
                   className="contact-title font-semibold hover:underline underline-offset-4 break-all"
                 >
-                  irenpavlenko22@gmail.com
+                  irenfujiharu@gmail.com
                 </a>
               </div>
 
               <div className="flex items-center gap-5 contact-social">
                 <a
-                  href="https://www.linkedin.com/in/irenpavlenko"
+                  href="https://www.linkedin.com/in/irenfujiharu"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"
