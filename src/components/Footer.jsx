@@ -33,7 +33,7 @@ const Footer = () => {
           aria-label="Site credits"
         >
           {since} &ndash; {presentLabel} &middot; Coded &amp; Designed by{" "}
-          <span className="footer-name">Iren P.</span>
+          <span className="footer-name">Iren F.</span>
         </p>
       </div>
 
