@@ -106,18 +106,21 @@ const projects = [
       demo: "https://ai-readme-generator-md.vercel.app/",
     },
   },
-  {
-    key: "portfolio",
-    title: "Full-Stack Developer Personal Portfolio",
-    tagline: "Responsive full-stack portfolio with automated CI/CD on Netlify.",
-    desc: "I designed and coded my personal portfolio from scratch to showcase my work as a full-stack developer. I started with Figma mockups, then built a responsive site that works well across devices. I focused on performance and accessibility, and I set up automated deployment with Netlify’s CI/CD so I can update it quickly whenever I add new projects. I also integrated FormSubmit for serverless form handling with a honeypot field for spam protection.",
-    tech: ["JS", "CSS", "HTML", "Tailwind", "React", "GSAP", "Netlify"],
-    previews: { desktop: portDesktop, mobile: portMobile },
-    links: {
-      github: "https://github.com/IrenFuji/portfolio-v2-dev",
-      demo: "https://irendev.netlify.app/",
-    },
+{
+  key: "portfolio",
+  title: "Software Developer Portfolio",
+  tagline: "Responsive portfolio website with automated deployment and performance-focused design.",
+  desc: `- Built a fully responsive React application with focus on performance, accessibility, and clean UI/UX
+- Deployed on Netlify with Git-based automatic builds and updates for fast iteration
+- Integrated serverless form handling (FormSubmit) with honeypot-based spam protection
+- Optimized animations and interactions using GSAP for smooth user experience`,
+  tech: ["JS", "CSS", "HTML", "Tailwind", "React", "GSAP", "Netlify"],
+  previews: { desktop: portDesktop, mobile: portMobile },
+  links: {
+    github: "https://github.com/IrenFuji/portfolio-v2-dev",
+    demo: "https://irendev.netlify.app/",
   },
+},
 ];
 
 /* --- UI --- */
