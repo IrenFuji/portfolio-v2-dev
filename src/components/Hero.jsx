@@ -38,7 +38,7 @@ export default function Hero() {
           </h1>
 
           <h2 className="hero-title hero-accent-title text-[clamp(28px,5vw,36px)] font-extrabold">
-            Full-Stack Developer.
+            Software Developer.
           </h2>
 
           <p className="hero-copy mt-4 sm:mt-5 text-[clamp(16px,1.8vw,16px)] leading-[1.7]">
