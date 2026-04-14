@@ -70,10 +70,15 @@ const DEVICE = { DESKTOP: "desktop", MOBILE: "mobile" };
 const projects = [
   {
     key: "ecommerce",
-    title: "E-Commerce Platform for Fuji Energy Co., Ltd. (B2B & B2C)",
+    title: "Fuji Energy E-Commerce Platform",
     tagline:
-      "End-to-end e-commerce platform for Fuji Energy, delivered solo from design to AWS deployment.",
-    desc: "I built this project completely on my own, starting with Figma to map out user and client flows, creating mock designs, and working directly with the client to align on requirements. From there, I developed the frontend and backend, handled testing, and deployed everything on AWS. It’s a full production-ready e-commerce platform that supports both B2B and B2C transactions.",
+      "Production-ready B2B and B2C e-commerce platform built end-to-end and deployed on AWS.",
+    desc: [
+      "Led end-to-end development, from requirements and UI/UX planning to frontend, backend, testing, and deployment",
+      "Built a production platform supporting product browsing, checkout flows, payments, authentication, and admin operations",
+      "Integrated Stripe, Firebase, SendGrid, and Algolia to support payments, user management, email workflows, and search",
+      "Deployed and maintained cloud infrastructure on AWS for a live customer-facing application",
+    ],
     tech: [
       "JS",
       "CSS",
@@ -95,10 +100,15 @@ const projects = [
   },
   {
     key: "aireadme",
-    title: "AI-Powered README Generator for Tech Professionals",
+    title: "AI README Generator",
     tagline:
-      "AI-driven README generator to make developer documentation faster and more consistent.",
-    desc: "This tool helps developers quickly create professional, well-structured README files. I researched common pain points in project documentation, designed a simple interface, and integrated AI to generate content. The goal was to save developers time and improve consistency in documentation.",
+      "AI-powered tool for generating structured README files faster and more consistently.",
+    desc: [
+      "Built a tool that helps developers generate professional README content with less manual effort",
+      "Designed a simple, focused interface to make documentation creation fast and easy to use",
+      "Integrated OpenAI API to generate structured content for common project documentation sections",
+      "Focused on improving consistency and reducing time spent writing repetitive README content",
+    ],
     tech: ["JS", "HTML5", "CSS3", "Open AI API", "Tailwind", "Vercel"],
     previews: { desktop: aiDesktop, mobile: aiMobile },
     links: {
@@ -106,21 +116,24 @@ const projects = [
       demo: "https://ai-readme-generator-md.vercel.app/",
     },
   },
-{
-  key: "portfolio",
-  title: "Software Developer Portfolio",
-  tagline: "Responsive portfolio website with automated deployment and performance-focused design.",
-  desc: `- Built a fully responsive React application with focus on performance, accessibility, and clean UI/UX
-- Deployed on Netlify with Git-based automatic builds and updates for fast iteration
-- Integrated serverless form handling (FormSubmit) with honeypot-based spam protection
-- Optimized animations and interactions using GSAP for smooth user experience`,
-  tech: ["JS", "CSS", "HTML", "Tailwind", "React", "GSAP", "Netlify"],
-  previews: { desktop: portDesktop, mobile: portMobile },
-  links: {
-    github: "https://github.com/IrenFuji/portfolio-v2-dev",
-    demo: "https://irendev.netlify.app/",
+  {
+    key: "portfolio",
+    title: "Software Developer Portfolio",
+    tagline:
+      "Responsive portfolio website with automated deployment and performance-focused design.",
+    desc: [
+      "Built a fully responsive React application with focus on performance, accessibility, and clean UI/UX",
+      "Deployed on Netlify with Git-based automatic builds and updates for fast iteration",
+      "Integrated serverless form handling with FormSubmit and honeypot-based spam protection",
+      "Optimized animations and interactions using GSAP for a smooth user experience",
+    ],
+    tech: ["JS", "CSS", "HTML", "Tailwind", "React", "GSAP", "Netlify"],
+    previews: { desktop: portDesktop, mobile: portMobile },
+    links: {
+      github: "https://github.com/IrenFuji/portfolio-v2-dev",
+      demo: "https://irendev.netlify.app/",
+    },
   },
-},
 ];
 
 /* --- UI --- */
@@ -162,11 +175,9 @@ function TechStack({ items = [] }) {
   );
 }
 
-/* --- UPDATED LINKS (GitHub icon only, aligned, size-10) --- */
 function Links({ links }) {
   return (
     <div className="mt-5 flex flex-wrap items-center gap-6">
-      
       {links.github && (
         <a
           href={links.github}
@@ -202,7 +213,6 @@ function Links({ links }) {
           <span>Admin Panel</span>
         </a>
       )}
-
     </div>
   );
 }
@@ -240,13 +250,13 @@ function ProjectCard({ item, index, device }) {
           {item.title}
         </h3>
 
-        <p className="project-sub mt-1 text-[13px] italic">
-          {item.tagline}
-        </p>
+        <p className="project-sub mt-1 text-[13px] italic">{item.tagline}</p>
 
-        <p className="project-body mt-3 max-w-prose text-[15px] leading-relaxed">
-          {item.desc}
-        </p>
+        <ul className="project-body mt-3 max-w-prose list-disc pl-5 text-[15px] leading-relaxed space-y-2">
+          {item.desc.map((point, idx) => (
+            <li key={idx}>{point}</li>
+          ))}
+        </ul>
 
         <TechStack items={item.tech} />
         <Links links={item.links} />
@@ -261,7 +271,6 @@ export default function Projects() {
   return (
     <section id="projects" className="py-10 sm:py-12">
       <div className="mx-auto max-w-6xl px-4">
-        
         <div className="text-center">
           <h2 className="section-title text-4xl sm:text-5xl">Projects</h2>
 
@@ -280,7 +289,6 @@ export default function Projects() {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );
